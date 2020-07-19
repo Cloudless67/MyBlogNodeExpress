@@ -1,0 +1,49 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: auto;
+  max-width: 1200px;
+}
+
+a {
+  color: #00B7FF;
+}
+
+li {
+  list-style-type: none;
+}
+
+.Logo {
+  text-align: center;
+  margin: auto;
+}
+
+.TableOfContent {
+  text-align: left;
+  line-height: 20px;
+  width: 250px;
+  float: right;
+}
+
+.Body {
+  margin-left: 50px;
+  max-width: 880px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.BodyTitle {
+  text-align: left;
+  padding: 10px;
+}
+
+.BodyDateTime {
+  text-align: right;
+  color: lightgray;
+  padding-right: 20px;
+}
+
+.BodyText {
+  text-align: left;
+  padding: 10px;
+  white-space: pre-wrap;
+}
