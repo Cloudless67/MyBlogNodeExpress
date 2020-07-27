@@ -32,11 +32,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // connect to mysql server
-var mysqlConnection = require('./middleware/mysql')(process.env.DB_HOST, process.env.DB_USER, process.env.DB_PWD, process.env.DB_NAME);
-app.use((req, res, next) => {
-  req.database = mysqlConnection;
-  next();
-});
+// var mysqlConnection = require('./middleware/mysql')(process.env.DB_HOST, process.env.DB_USER, process.env.DB_PWD, process.env.DB_NAME);
+// app.use((req, res, next) => {
+//   req.database = mysqlConnection;
+//   next();
+// });
 
 app.use(session({
   secret: 'keyboard cat',
