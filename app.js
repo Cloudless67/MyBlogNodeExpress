@@ -1,7 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser')
 const logger = require('morgan');
 const session = require('express-session');
@@ -22,7 +21,6 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
  
 // parse application/x-www-form-urlencoded
@@ -38,14 +36,16 @@ app.use((req, res, next) => {
   next();
 });
 
+// create session store
+var sessionStore = new MySQLStore({}, mysqlConnection);
+
 app.use(session({
-  secret: 'keyboard cat',
+  key: 'LoginSession',
+  secret: 'Secret',
+  store: sessionStore,
   resave: false,
   saveUninitialized: true
 }))
-
-// create session store
-var sessionStore = new MySQLStore({}, mysqlConnection);
 
 // get categories
 app.use(require('./middleware/navigationbar'));

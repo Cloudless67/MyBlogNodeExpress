@@ -4,12 +4,13 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    .Top
-      .Top-right
-        if(session.loggedin)
-          a(href='/logout') 로그아웃
-        else
-          a(href='/login') 로그인
+    if(session)
+      .Top
+        .Top-right
+          if(session.nickname !== undefined)
+            a(href='/logout') 로그아웃
+          else
+            a(href='/login') 로그인
 
       .Logo
         h1 This is logo

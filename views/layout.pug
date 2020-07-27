@@ -9,7 +9,7 @@ block content
         li.category-navbar-list
           a(href='/category/' + category.url)= category.name
     
-    if(session.loggedin)
+    if(session.nickname !== undefined)
       #write
         a(href='/post/write') 글쓰기
 
