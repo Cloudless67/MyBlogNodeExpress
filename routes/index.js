@@ -18,9 +18,13 @@ router.post('/login', (req, res) => {
     return;
   }
   bcrypt.compare(req.body.password, process.env.PASSWORD, (err, result) => {
+    if(err) throw(err);
     if(result) {
-      req.session.loggedin = true;
-      res.redirect('/');
+      req.session.nickname = req.body.id;
+      req.session.save((err) => {
+        if(err) throw(err);
+        res.redirect('/');
+      })
     }
     else {
       res.render('error', {
@@ -32,14 +36,17 @@ router.post('/login', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-  req.session.loggedin = false;
-  res.redirect('/');
+  delete req.session.nickname;
+  req.session.save(()=> {
+    res.redirect('/');
+  })
 })
 
 router.get('/', (req, res) => {
   req.database.query('SELECT * FROM post;', (err, rows) => {
     if(err) throw err;
 
+    console.log(req.session.nickname);
     res.render('category', {
         session: req.session,
         posts: rows,
