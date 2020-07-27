@@ -1,0 +1,19 @@
+extends layout
+
+block post
+
+  .Body
+    div
+      h4.category= post.category
+      h1.BodyTitle= post.title
+      p.BodyDateTime= post.writtentime
+      p.BodyText= post.body
+
+      .deletenedit
+        form.delete-container(action = `update` method='post')
+          input.delete-text(type='hidden' name='id' value=post.id)
+          input(type='submit' value='수정')
+        form.delete-container(action = `delete` method='post')
+          input.delete-text(type='hidden' name='id' value=post.id)
+          input(type='submit' value='삭제')
+  

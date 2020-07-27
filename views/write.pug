@@ -1,0 +1,18 @@
+extends layout
+
+block post
+  .Body
+    div
+      form(method='post' action='write')
+        label(for='category') 메뉴
+        select(name="category")
+          each category in categories
+            option(value=category.name)= category.name
+        br
+        label(for='title') 제목
+        input.input-text(type='text' name='title')
+        br
+        label(for='body' style='vertical-align: top') 본문
+        textarea.input-text(name='body')
+        br
+        input(type='submit' value='글쓰기')

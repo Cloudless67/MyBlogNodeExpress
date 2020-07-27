@@ -1,9 +1,16 @@
-doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    .Logo
-      h1 This is logo
-    block content
+extends top-layout
+
+block content
+
+  .category-navbar
+    h3(style='padding-left:10px;') 항목
+    ul
+      each category in categories
+        li.category-navbar-list
+          a(href='/category/' + category.url)= category.name
+    
+    if(session.loggedin)
+      #write
+        a(href='/post/write') 글쓰기
+
+  block post

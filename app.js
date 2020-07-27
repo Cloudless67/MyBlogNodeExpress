@@ -1,11 +1,17 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser')
+const logger = require('morgan');
+const session = require('express-session');
+const dotenv = require('dotenv');
+dotenv.config({path: './config.env'});
+const MySQLStore = require('express-mysql-session')(session);
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var postRouter = require('./routes/post');
+var categoryRouter = require('./routes/category');
 
 var app = express();
 
@@ -18,9 +24,35 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+ 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+app.use(bodyParser.json())
 
+// connect to mysql server
+var mysqlConnection = require('./middleware/mysql')(process.env.DB_HOST, process.env.DB_USER, process.env.DB_PWD, process.env.DB_NAME);
+app.use((req, res, next) => {
+  req.database = mysqlConnection;
+  next();
+});
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}))
+
+// create session store
+var sessionStore = new MySQLStore({}, mysqlConnection);
+
+// get categories
+app.use(require('./middleware/navigationbar'));
+
+app.use('/post', postRouter);
+app.use('/category', categoryRouter);
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
