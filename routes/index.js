@@ -1,54 +1,52 @@
 var express = require('express');
-var fs = require('fs');
-const { time } = require('console');
 var router = express.Router();
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const myPlaintextPassword = 's0/\/\P4$$w0rD';
 
-router.get('/', (req, res) => {
-  fs.readFile("./public/writings/writings.json", "utf8", (e, writingsRAW) => {
-    if(e) throw(e);
-    let writings = JSON.parse(writingsRAW);
-    let writing = writings[writings.length - 1];
-    fs.readFile("./public/categories.json", "utf8", (e, categoriesRAW) => {
-      if(e) throw(e);
-      let categories = JSON.parse(categoriesRAW);
-      Render(res, categories, writing);
-    });
-  })
-});
+router.get('/login', (req, res) => {
+  res.render('login', {
+    session: req.session
+  });
+})
 
-/* GET home page. */
-router.get('/:category/:title', function(req, res) {
-  var category = req.params.category;
-  var title = req.params.title;
-
-  fs.readFile("./public/categories.json", "utf8", (e, categoriesRAW) => {
-    if(e) throw(e);
-    else{
-      let categories = JSON.parse(categoriesRAW);
-      if(categories.some(elem => elem.url == category)){
-        Render(res, categories, title);
-      }
-      else{
-        res.send("잘못된 접근입니다.");
-      }
+router.post('/login', (req, res) => {
+  if(req.body.id !== process.env.ID){
+    res.render('error', {
+      message: "존재하지 않는 ID입니다."
+    })
+    return;
+  }
+  bcrypt.compare(req.body.password, process.env.PASSWORD, (err, result) => {
+    if(result) {
+      req.session.loggedin = true;
+      res.redirect('/');
+    }
+    else {
+      res.render('error', {
+        message: "password가 일치하지 않습니다."
+      })
+      return;
     }
   });
-});
+})
 
-Render = (res, categories, title) => {
-  fs.readFile(`./public/writings/${title}.json`, "utf8", (e, writingRAW) => {
-    if(e) throw(e);
-    let writing = JSON.parse(writingRAW);
-    fs.readFile(`./public/writings/${writing.file}`, "utf8", (e, text) => {
-      if(e) throw(e);
-      res.render('index', { 
-        title: writing.title, 
-        mainText: text,
-        dateTime: writing.date + " " + writing.time, 
-        categories: categories
-      });
-    });
-  });
-}
+router.get('/logout', (req, res) => {
+  req.session.loggedin = false;
+  res.redirect('/');
+})
+
+router.get('/', (req, res) => {
+  req.database.query('SELECT * FROM post;', (err, rows) => {
+    if(err) throw err;
+
+    res.render('category', {
+        session: req.session,
+        posts: rows,
+        selectedCategory: '전체 글',
+        categories: req.categories
+    })
+  })
+})
 
 module.exports = router;

@@ -1,0 +1,22 @@
+extends layout
+
+block post
+  .Body
+    div
+      form(method='post' action='update/process')
+        input.delete-text(type='hidden' name='id' value=id)
+        label(for='category') 메뉴
+        select(name="category")
+          each category in categories
+            if(category.name === _category)
+              option(value=category.name selected)= category.name
+            else
+              option(value=category.name)= category.name
+        br
+        label(for='title') 제목
+        input.input-text(type='text' name='title' value=title)
+        br
+        label(for='body' style='vertical-align: top') 본문
+        textarea.input-text(name='body')= body
+        br
+        input(type='submit' value='수정')

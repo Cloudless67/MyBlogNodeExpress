@@ -2,48 +2,142 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: auto;
   max-width: 1200px;
+  min-width: 800px;
+  background-color: lightseagreen;
 }
 
 a {
-  color: #00B7FF;
+  color: #000000;
+  text-decoration: solid;
+}
+
+a:hover {
+  color: #000000;
+  text-decoration: underline;
 }
 
 li {
   list-style-type: none;
 }
 
-.Logo {
-  text-align: center;
-  margin: auto;
+.Top {
+  display: block;
 }
 
-.TableOfContent {
+.Logo {
+  text-align: center;
+}
+
+.Top-right {
+  text-align: right;
+  margin-right: 50px;
+}
+
+.Top-right>a {
+  color: white;
+}
+
+.category-navbar {
+  position: relative;
   text-align: left;
   line-height: 20px;
+  margin-right: 50px;
   width: 250px;
+  min-height: 200px;
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 2px;
+  background-color: white;
+  font-size: 16px;
   float: right;
+}
+
+.category-navbar-list {
+  list-style-type: square;
+}
+
+#write {
+  position: absolute;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  background-color: teal;
+  padding: 2px;
+  right: 20px;
+  bottom: 20px;
+}
+
+#write>a {
+  color: white;
 }
 
 .Body {
   margin-left: 50px;
-  max-width: 880px;
+  margin-right: 350px;
+  max-width: 800px;
+  min-width: 250px;
+  width: auto;
+  border-radius: 8px;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
+  background-color: white;
 }
 
-.BodyTitle {
-  text-align: left;
+.Body>div {
   padding: 10px;
+  display: block;
 }
 
 .BodyDateTime {
   text-align: right;
   color: lightgray;
-  padding-right: 20px;
 }
 
 .BodyText {
-  text-align: left;
-  padding: 10px;
   white-space: pre-wrap;
+}
+
+#inputBody {
+  max-width: 1200px;
+}
+
+.delete-container {
+  padding-left: 20px;
+}
+
+.delete-text {
+  color: lightgray;
+}
+
+.deletenedit {
+  text-align: right;
+  margin: 10px;
+}
+
+.deletenedit > form {
+  display: inline;
+}
+
+.input-text {
+  width: 90%;
+}
+
+.Login {
+  margin: auto;
+}
+
+.Login label {
+  min-width: 100px;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.Login-input,.Login-submit {
+  display: inline-block;
+}
+
+.Login-submit input {
+  vertical-align: bottom;
+  margin-left: 5px;
+  height: 40px;
 }

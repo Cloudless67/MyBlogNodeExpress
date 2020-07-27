@@ -1,0 +1,14 @@
+extends top-layout
+
+block content
+  .Login
+    form(action='login' method='post')
+      .Login-input
+        label(for='id') ID
+        input(type='text' name='id')
+        br
+        label(for='id') password
+        input(type='password' name='password')
+      
+      .Login-submit
+        input(type='submit' value='로그인')

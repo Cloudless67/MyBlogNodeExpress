@@ -1,0 +1,11 @@
+extends layout
+
+block post
+
+  .Body
+    div
+      h1.BodyTitle= selectedCategory
+      ul
+        each post in posts
+          li
+            a(href=`/post/${post.id}`)= post.title
