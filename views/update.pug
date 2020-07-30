@@ -1,6 +1,8 @@
 extends layout
 
 block post
+  script(src="https://cdn.quilljs.com/1.3.6/quill.js")
+  link(href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet")
   .Body
     div
       form(method='post' action='update/process')
@@ -16,7 +18,10 @@ block post
         label(for='title') 제목
         input.input-text(type='text' name='title' value=title)
         br
-        label(for='body' style='vertical-align: top') 본문
-        textarea.input-text(name='body')= body
+
+        input(type='hidden' name='body')
+        #editor-container= body
         br
         input(type='submit' value='수정')
+
+  script(src = '/scripts/quill-update.js')
