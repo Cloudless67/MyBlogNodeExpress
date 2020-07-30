@@ -44,6 +44,7 @@ router.post('/update/process', (req, res) => {
   let category = req.database.escape(req.body.category);
   let title = req.database.escape(req.body.title);
   let body = req.database.escape(req.body.body);
+  console.log(body);
   req.database.query('UPDATE post ' + 
   `SET category = ${category}, title = ${title}, writtentime = '${moment().format()}',` + 
   ` body = ${body} WHERE id = ${req.body.id};`, (err, result) => {
