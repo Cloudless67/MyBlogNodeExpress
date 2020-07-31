@@ -2,8 +2,14 @@ doctype html
 html
   head
     title Cloudlesslakitu의 블로그
-    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    meta(property="og:url" content="https://www.cloudless.blog")
+    meta(property="og:title" content="Cloudlesslakitu의 블로그")
+    meta(property="og:type" content="website")
+    meta(property="og:image" content="/images/favicon.ico")
+
+    meta(property="og:description" content="개발 관련 및 잡다한 글을 위한 블로그입니다.")
+    link(rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon")
+    link(rel="icon" href="/images/favicon.ico" type="image/x-icon")
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     if(session)
