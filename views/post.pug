@@ -11,12 +11,13 @@ block post
       p.BodyDateTime= post.writtentime
       #editor-container= post.body
 
-      .deletenedit
-        form.delete-container(action = `update` method='post')
-          input.delete-text(type='hidden' name='id' value=post.id)
-          input(type='submit' value='수정')
-        form.delete-container(action = `delete` method='post')
-          input.delete-text(type='hidden' name='id' value=post.id)
-          input(type='submit' value='삭제')
+      if(session.nickname)
+        .deletenedit
+          form.delete-container(action = `update` method='post')
+            input.delete-text(type='hidden' name='id' value=post.id)
+            input(type='submit' value='수정')
+          form.delete-container(action = `delete` method='post')
+            input.delete-text(type='hidden' name='id' value=post.id)
+            input(type='submit' value='삭제')
   
   script(src = '/scripts/quill-post.js')

@@ -20,8 +20,9 @@ block post
         br
 
         input(type='hidden' name='body')
-        #editor-container= body
+        #editor-container(value= body)
         br
         input(type='submit' value='수정')
 
-  script(src = '/scripts/quill-update.js')
+  script(src = '/scripts/quill-clipboard-tweak.js')
+  script(src = '/scripts/quill-write.js')
