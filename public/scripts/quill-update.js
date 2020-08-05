@@ -23,9 +23,10 @@ var quill = new Quill('#editor-container', {
   theme: 'snow'  // or 'bubble'
 });
 
-var v = quill.getContents().ops[0].insert;
-if(v){
-  quill.setContents(JSON.parse(v));
+console.log(document.getElementById('editor-container').getAttribute('value'))
+var content = quill.getContents().ops[0].insert;
+if(content){
+  quill.setContents(JSON.parse(content));
 }
 
 var form = document.querySelector('form');

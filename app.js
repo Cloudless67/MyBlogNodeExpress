@@ -9,6 +9,7 @@ dotenv.config({path: './config.env'});
 const MySQLStore = require('express-mysql-session')(session);
 
 var indexRouter = require('./routes/index');
+var apiRouter = require('./routes/api');
 var postRouter = require('./routes/post');
 var categoryRouter = require('./routes/category');
 
@@ -52,6 +53,7 @@ app.use(require('./middleware/navigationbar'));
 
 app.use('/post', postRouter);
 app.use('/category', categoryRouter);
+app.use('/api', apiRouter);
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
