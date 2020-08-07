@@ -1,12 +1,15 @@
 extends layout
 
 block post
+  meta(property="og:description" content=post.title)
   script(src="https://cdn.quilljs.com/1.3.6/quill.js")
   link(href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet")
+  link(href="/stylesheets/quill-snow-readonly.css" rel="stylesheet")
 
   .Body
     div
-      h4.category= post.category
+      a(href = '/category/' + categories.find(e=> e.name === post.category).url)
+        h4.category= post.category
       h1.BodyTitle= post.title
       p.BodyDateTime= post.writtentime
       #editor-container= post.body
