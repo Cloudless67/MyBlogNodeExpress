@@ -5,7 +5,7 @@ var quill = new Quill('#editor-container', {
   },
   placeholder: '본문',
   readOnly: true,
-  theme: 'bubble'  // or 'bubble'
+  theme: 'snow'  // or 'bubble'
 });
 
 var v = quill.getContents().ops[0].insert;
