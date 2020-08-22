@@ -1,10 +1,10 @@
-var Clipboard = Quill.import('modules/clipboard');
-var Delta = Quill.import('delta');
+const Clipboard = Quill.import('modules/clipboard');
+const Delta = Quill.import('delta');
 var pastedImage;
 
 class PlainClipboard extends Clipboard {
   convert(html) {
-    var delta = super.convert(html)
+    let delta = super.convert(html)
     delta.ops.map(x => {
       if(x.insert && x.insert.image){
         console.log(pastedImage)
@@ -23,17 +23,17 @@ window.addEventListener('paste', e => {
 });
 
 _InsertImage = (image) => {
-  var data = new FormData();
+  let data = new FormData();
   data.append('image', image)
 
   // Send form request
-  var xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     // If image upload Successed
     if(xhr.readyState === XMLHttpRequest.DONE) {
-      var status = xhr.status;
+      let status = xhr.status;
       if (status === 0 || (status >= 200 && status < 400)) {
-        var {index, range} = quill.getSelection();
+        let {index, range} = quill.getSelection();
       } else {
         alert(xhr.responseText)
       }

@@ -1,7 +1,7 @@
-var mysql = require('mysql')
+const mysql = require('mysql')
 
 module.exports = function(host, user, password, database){
-  var connection = mysql.createPool({
+  let connection = mysql.createPool({
     host     : host,
     user     : user,
     password : password,

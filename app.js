@@ -8,12 +8,12 @@ const dotenv = require('dotenv');
 dotenv.config({path: './config.env'});
 const MySQLStore = require('express-mysql-session')(session);
 
-var indexRouter = require('./routes/index');
-var apiRouter = require('./routes/api');
-var postRouter = require('./routes/post');
-var categoryRouter = require('./routes/category');
+let indexRouter = require('./routes/index');
+let apiRouter = require('./routes/api');
+let postRouter = require('./routes/post');
+let categoryRouter = require('./routes/category');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,14 +31,14 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // connect to mysql server
-var mysqlConnection = require('./middleware/mysql')(process.env.DB_HOST, process.env.DB_USER, process.env.DB_PWD, process.env.DB_NAME);
+let mysqlConnection = require('./middleware/mysql')(process.env.DB_HOST, process.env.DB_USER, process.env.DB_PWD, process.env.DB_NAME);
 app.use((req, res, next) => {
   req.database = mysqlConnection;
   next();
 });
 
 // create session store
-var sessionStore = new MySQLStore({}, mysqlConnection);
+let sessionStore = new MySQLStore({}, mysqlConnection);
 
 app.use(session({
   key: 'LoginSession',

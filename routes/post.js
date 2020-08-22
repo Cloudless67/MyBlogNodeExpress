@@ -1,10 +1,10 @@
-var express = require('express');
-var moment = require('moment');
-var fs = require('fs');
+const express = require('express');
+const moment = require('moment');
+const fs = require('fs');
 const { render } = require('../app');
 const { ifError } = require('assert');
 const { isNumber } = require('util');
-var router = express.Router();
+const router = express.Router();
 
 router.get('/write', (req, res) => {
   if(CheckAuth(req, res)){
@@ -24,8 +24,8 @@ router.post('/write', (req, res) => {
     req.database.query('INSERT INTO post (category, title, writtentime, body, views)' + 
     `VALUES (${category}, ${title}, '${moment().format()}', ${body}, 0);`, (err, result) => {
       if(err) throw err;
-      console.log(result);
-      res.status(200).redirect('/');
+      console.log(req.body);
+      res.end()//status(200).redirect('/');
     })
   }
 })
