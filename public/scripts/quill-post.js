@@ -1,5 +1,5 @@
 
-var quill = new Quill('#editor-container', {
+let quill = new Quill('#editor-container', {
   modules: {
     toolbar: []
   },
@@ -8,5 +8,5 @@ var quill = new Quill('#editor-container', {
   theme: 'snow'  // or 'bubble'
 });
 
-var v = quill.getContents().ops[0].insert;
+let v = quill.getContents().ops[0].insert;
 quill.setContents(JSON.parse(v));
