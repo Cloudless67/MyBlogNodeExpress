@@ -1,7 +1,9 @@
 extends layout
 
 block post
-  meta(property="og:description" content=post.title)
+      title Cloudlesslakitu의 블로그
+  meta(property="og:title" content=post.title)
+  meta(property="og:description" content=post.body)
   script(src="https://cdn.quilljs.com/1.3.6/quill.js")
   link(href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet")
   link(href="/stylesheets/quill-snow-readonly.css" rel="stylesheet")

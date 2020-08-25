@@ -46,6 +46,17 @@ router.delete('/image/:name(*)', (req, res) => {
   }
 });
 
+router.post('/category/:name', (req, res) => {
+  if(CheckAuth(req, res)){
+    let name = req.database.escape(req.params.name);
+    req.database.query('INSERT INTO category ' + 
+    `VALUES (${name}, ${name});`, (err, result) => {
+      if(err) throw err;
+      res.end()//status(200).redirect('/');
+    })
+  }
+});
+
 CheckAuth = (req, res) => {
   if(req.session.nickname){
     return true;
