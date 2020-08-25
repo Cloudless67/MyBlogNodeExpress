@@ -141,3 +141,22 @@ li {
   margin-left: 5px;
   height: 40px;
 }
+
+#category-settings {
+  display: inline-block;
+  border: none;
+  background: none;
+}
+
+#category-settings:hover {
+  cursor: pointer;
+}
+
+#category-settings:focus {
+  border: none;
+}
+
+#category-settings-icon {
+  width: 16px;
+  height: 16px;
+}
