@@ -92,7 +92,7 @@ router.get('/:id', (req, res) => {
   }
 });
 
-Render = (res, req, postId) => {
+function Render(res, req, postId) {
   req.database.query(`SELECT * FROM POST WHERE id = ${postId};`, (err, post) => {
     if (err){
       throw err;
@@ -100,6 +100,11 @@ Render = (res, req, postId) => {
     if(post.length === 0){
       res.send('존재하지 않는 글입니다.');
     }
+    if(!req.session.nickname){
+      req.database.query(`UPDATE post SET views = views + 1 WHERE id = ${postId};`);
+    }
+    post[0].writtentime = moment(post[0].writtentime).format('YYYY.MM.DD. HH:mm');
+    post[0].views++;
     res.status(200).render('post', {
       session: req.session,
       post: post[0],
