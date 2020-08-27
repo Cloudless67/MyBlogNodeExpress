@@ -45,7 +45,10 @@ app.use(session({
   secret: 'Secret',
   store: sessionStore,
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 24*60*60*1000
+  }
 }))
 
 // get categories

@@ -12,7 +12,7 @@ block post
       a(href = '/category/' + categories.find(e=> e.name === post.category).url)
         h4.category= post.category
       h1.BodyTitle= post.title
-      p.BodyDateTime= post.writtentime
+      p.BodyDateTime= post.writtentime + ` | 조회 ${post.views}`
       #editor-container= post.body
 
       if(session.nickname)
