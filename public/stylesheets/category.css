@@ -1,0 +1,16 @@
+.posts-list {
+  border-top: 1px solid lightgray;
+  padding: 10px;
+}
+
+.posts-list h3 {
+  display: inline;
+}
+
+.posts-list small {
+  float: right;
+}
+
+.posts-list p {
+  color: #999999;
+}
