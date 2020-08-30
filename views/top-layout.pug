@@ -2,8 +2,8 @@ doctype html
 html
   head
     if(post === undefined)
-      title Cloudlesslakitu의 블로그
-      meta(property="og:title" content="Cloudlesslakitu의 블로그")
+      title Cloudless의 블로그
+      meta(property="og:title" content="Cloudless의 블로그")
       meta(property="og:description" content="개발 관련 및 잡다한 글을 위한 블로그입니다.")
     else
       title=post.title
@@ -19,15 +19,14 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     if(session)
-      .Top
-        .Top-right
+      header.Top
+        a#Logo(href = '/')
+          img(src='/images/Logo_White.png')
+          h1 Cloudless' Blog
+        .Login
           if(session.nickname !== undefined)
             a(href='/logout') 로그아웃
           else
             a(href='/login') 로그인
-
-      .Logo
-        a(href = '/')
-          h1 This is logo
-
-    block content
+    .Content
+      block content

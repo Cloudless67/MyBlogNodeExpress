@@ -2,10 +2,12 @@ extends layout
 
 block post
 
-  .Body
-    div
-      h1.BodyTitle= selectedCategory
-      ul
-        each post in posts
-          li
-            a(href=`/post/${post.id}`)= post.title
+  link(rel='stylesheet', href='/stylesheets/category.css')
+  div
+    h1.BodyTitle= selectedCategory
+    each post in posts
+      .posts-list
+        a(href=`/post/${post.id}`)
+          h3=post.title
+          small=`조회 ${post.views}`
+          p=JSON.parse(post.body).ops[0].insert

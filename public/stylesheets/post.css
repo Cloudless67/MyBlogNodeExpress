@@ -1,0 +1,38 @@
+.BodyDateTime {
+  display: block;
+  text-align: right;
+  color: gray;
+  padding-bottom: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.BodyTitle {
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.BodyText {
+  white-space: pre-wrap;
+}
+
+.delete-container {
+  padding-left: 20px;
+}
+
+.delete-text {
+  color: lightgray;
+}
+
+.deletenedit {
+  text-align: right;
+  margin: 10px;
+}
+
+.deletenedit > form {
+  display: inline;
+}

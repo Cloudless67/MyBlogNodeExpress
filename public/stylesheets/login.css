@@ -1,0 +1,22 @@
+.Login-div {
+  position: absolute;
+  margin-top: 60px;
+  left: 40%;
+  width: 20%;
+}
+
+.Login-div label {
+  min-width: 100px;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.Login-input,.Login-submit {
+  display: inline-block;
+}
+
+.Login-submit input {
+  vertical-align: bottom;
+  margin-left: 5px;
+  height: 40px;
+}

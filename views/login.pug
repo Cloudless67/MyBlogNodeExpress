@@ -1,7 +1,8 @@
 extends top-layout
 
 block content
-  .Login
+  link(rel='stylesheet', href='/stylesheets/login.css')
+  .Login-div
     form(action='login' method='post')
       .Login-input
         label(for='id') ID
