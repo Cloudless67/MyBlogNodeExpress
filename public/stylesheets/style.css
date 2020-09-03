@@ -124,7 +124,7 @@ li {
   height: 16px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   .Body {
     width: 100%;
     background: white;
