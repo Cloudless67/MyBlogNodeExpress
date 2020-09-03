@@ -25,10 +25,10 @@ router.post('/write', (req, res) => {
     `VALUES (${category}, ${title}, '${moment().format()}', ${body}, 0);`, (err, result) => {
       if(err) throw err;
       console.log(req.body);
-      res.end()//status(200).redirect('/');
+      res.status(200).redirect(`/post/${result.insertId}`);
     })
   }
-})
+});
 
 router.post('/update', (req, res) => {
   if(CheckAuth(req, res)){
@@ -102,9 +102,9 @@ function Render(res, req, postId) {
     }
     if(!req.session.nickname){
       req.database.query(`UPDATE post SET views = views + 1 WHERE id = ${postId};`);
+      post[0].views++;
     }
     post[0].writtentime = moment(post[0].writtentime).format('YYYY.MM.DD. HH:mm');
-    post[0].views++;
     res.status(200).render('post', {
       session: req.session,
       post: post[0],
