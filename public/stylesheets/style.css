@@ -49,8 +49,8 @@ li {
 .Content {
   float: right;
   max-width: 1600px;
-  min-width: 800px;
   width: 100%;
+  padding: 0;
 }
 
 .Body {
@@ -122,4 +122,24 @@ li {
 #category-settings-icon {
   width: 16px;
   height: 16px;
+}
+
+@media screen and (max-width: 800px) {
+  .Body {
+    width: 100%;
+    background: white;
+    box-sizing: border-box;
+    margin-top: 25px;
+  }
+  
+  .category-navbar {
+    line-height: 2em;
+    width: 100%;
+    min-height: 200px;
+    border: 1px lightgray solid;
+    background: white;
+    font-size: 16px;
+    margin: 25px 0px;
+    box-sizing: border-box;
+  }
 }
