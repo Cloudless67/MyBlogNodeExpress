@@ -1,7 +1,11 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 1em "Lucida Grande", Helvetica, Arial, sans-serif;
   background: lightgray;
   margin: 0;
+}
+
+h1 {
+  font-size: 1.8em;
 }
 
 a {
@@ -19,7 +23,7 @@ li {
 
 .Top {
   background: black;
-  height: 60px;
+  height: 4rem;
 }
 
 #Logo img {
@@ -42,7 +46,7 @@ li {
 }
 
 .Login a {
-  font-size: 16px;
+  font-size: 1.5em;
   color: white;
 }
 
@@ -79,7 +83,7 @@ li {
 }
 
 #write-button {
-  position: absolute;
+  position: fixed;
   background-color: teal;
   padding: 2px;
   right: 20px;
@@ -97,7 +101,7 @@ li {
 }
 
 .category-list-text {
-  font-size: 18px;
+  font-size: 1em;
   margin: 0;
 }
 
