@@ -1,3 +1,9 @@
+:root {
+  --primary-color: #01579b;
+  --primary-light: #4f83cc;
+  --primary-dark: #002f6c;
+}
+
 body {
   font: 1em "Lucida Grande", Helvetica, Arial, sans-serif;
   background: lightgray;
@@ -5,7 +11,15 @@ body {
 }
 
 h1 {
-  font-size: 1.8em;
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 1rem;
 }
 
 a {
@@ -21,32 +35,46 @@ li {
   list-style-type: none;
 }
 
+input[type="submit"] {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+  padding: 4px;
+}
+
 .Top {
-  background: black;
+  display: flex;
+  flex-direction: row;
+  background: var(--primary-color);
   height: 4rem;
 }
 
-#Logo img {
-  float: left;
+#Logo {
+  display: flex;
+  flex-direction: row;
   margin-left: 20px;
+}
+
+#Logo img {
+  align-content: center;
   height: 100%;
 }
 
 #Logo h1 {
-  float: left;
   margin-left: 20px;
   margin-bottom: 0;
   color: white;
 }
 
 .Login {
-  float: right;
   padding-top: 18px;
   padding-right: 20px;
+  margin-left: auto;
+  align-content: center;
 }
 
 .Login a {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   color: white;
 }
 
@@ -84,7 +112,7 @@ li {
 
 #write-button {
   position: fixed;
-  background-color: teal;
+  background-color: var(--primary-color);
   padding: 2px;
   right: 20px;
   bottom: 20px;
@@ -97,11 +125,10 @@ li {
 .category-list {
   color: gray;
   border-bottom: 1px solid lightgray;
-  font-size: 24px;
 }
 
 .category-list-text {
-  font-size: 1em;
+  font-size: 1.3em;
   margin: 0;
 }
 
@@ -129,6 +156,11 @@ li {
 }
 
 @media screen and (max-width: 1000px) {
+
+  html * {
+    font-size: 2rem;
+  }
+  
   .Body {
     width: 100%;
     background: white;
@@ -145,5 +177,52 @@ li {
     font-size: 16px;
     margin: 25px 0px;
     box-sizing: border-box;
+  }
+
+  h1 {
+    font-size: 4rem;
+  }
+  
+  h2 {
+    font-size: 3rem;
+  }
+  
+  h3 {
+    font-size: 2rem;
+  }
+  
+  p {
+    font-size: 2rem;
+  }
+
+  input[type="submit"] {
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    font-size: 2rem;
+  }
+
+  small {
+    font-size: 1.3rem;
+  }
+
+  .Top {
+    background: var(--primary-color);
+    height: 8rem;
+  }
+
+  #Logo h1{
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
+
+  .Login > a {
+    font-size: 3rem;
+    color: white;
+  }
+
+  .write_reply {
+    font-size: 2rem;
   }
 }

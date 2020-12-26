@@ -1,6 +1,6 @@
 var editingCategory = false;
-
 document.getElementById('category-settings').onclick = () => {
+    console.log(document.getElementById('category-settings'))
     let add = document.getElementById('category-add');
     if(add.style.visibility === 'hidden')
         add.style.visibility = 'visible';

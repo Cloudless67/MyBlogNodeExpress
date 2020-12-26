@@ -6,8 +6,9 @@ block content
   aside.category-navbar
     div
       h1(style='padding-left:10px; display: inline-block;' + session.nickname?'':'visibility:hidden;') 게시판
-        button#category-settings(type = 'button')
-            img#category-settings-icon(src="/images/gear.png", alt="gear.png")
+        button#category-settings(type = 'button' style='visibility: ' + session.nickname?';':'visibility:hidden;')
+          img#category-settings-icon(src="/images/gear.png", alt="gear.png")
+
 
     each category in categories
       p.category-list
@@ -20,5 +21,5 @@ block content
     if(session.nickname !== undefined)
       #write-button
         a(href='/post/write') 글쓰기
-    
+
   script(src = '/scripts/category-settings.js')
