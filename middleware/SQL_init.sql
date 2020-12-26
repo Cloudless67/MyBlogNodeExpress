@@ -1,13 +1,13 @@
-create database myblog;
+create database if not exists myblog;
 
 use myblog;
 
-create table category(
+create table if not exists category(
 	name varchar(255) primary key,
     url varchar(255)
 );
 
-create table post(
+create table if not exists post(
 	id int primary key auto_increment,
     category varchar(255),
     title varchar(255),
@@ -15,4 +15,14 @@ create table post(
     body text,
     views int,
     foreign key (category) references category(name)
+);
+
+create table if not exists reply(
+	id int primary key auto_increment,
+    pwd varchar(60),
+    post_id int,
+    writtentime datetime,
+    nickname varchar(255),
+    body text,
+    foreign key (post_id) references post(id)
 );

@@ -8,12 +8,15 @@
 
 .BodyTitle {
   display: block;
-  font-size: 2em;
   margin-block-start: 0.67em;
   margin-block-end: 0.67em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-weight: bold;
+}
+
+#editor-container {
+  font-size: 1rem;
 }
 
 .BodyText {
@@ -35,4 +38,78 @@
 
 .deletenedit > form {
   display: inline;
+}
+
+.Replies {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.Reply {
+  background-color: #b2c7d9;
+  border-radius: 4px;
+  padding: 5px;
+  margin-bottom: 0.3em;
+}
+
+.reply-nickname {
+  font-size: 0.8em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.ReplyBody {
+  border-radius: 4px;
+  background-color: white;
+  max-width: 70%;
+  padding: 0.3em;
+  margin: 0;
+  margin-right: 4px;
+  white-space: pre-line;
+  display: inline-block;
+}
+
+.ReplyDateTime {
+  margin-right: 4px;
+}
+
+.reply-delete-btn {
+  border: none;
+  border-radius: 4px;
+  background-color: red;
+  color: white;
+  padding: 2px -2px;
+}
+
+article {
+  margin-bottom: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.write-reply {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.write-reply-nickname {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.write-reply-password {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.write-reply-text {
+  width: 100%;
+}
+
+.write-reply-submit {
+  background-color: yellow;
+  margin: 2px;
+  padding: 2px;
+  border: solid 1px black;
+  bottom: 20px;
 }

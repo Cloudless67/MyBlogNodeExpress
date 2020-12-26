@@ -10,18 +10,42 @@ block post
 
   article
     a(href = '/category/' + categories.find(e=> e.name === post.category).url)
-      h4.category= post.category
+      h3.category= post.category
     h1.BodyTitle= post.title
     small.BodyDateTime= post.writtentime + ` | 조회 ${post.views}`
     #editor-container= post.body
 
     if(session.nickname)
       .deletenedit
-        form.delete-container(action = `update` method='post')
+        form.delete-container(action = 'update' method='post')
           input.delete-text(type='hidden' name='id' value=post.id)
           input(type='submit' value='수정')
-        form.delete-container(action = `delete` method='post')
+        form.delete-container(action = 'delete' method='post')
           input.delete-text(type='hidden' name='id' value=post.id)
           input(type='submit' value='삭제')
-  
+
+  h3 댓글
+  .Replies
+    each reply, index in replies
+      .Reply
+        h3.reply-nickname=reply.nickname
+        p.ReplyBody=reply.body
+        small.ReplyDateTime=reply.writtentime
+        button.reply-delete-btn(onclick=`DeleteReplyClicked(${index})` type='button' value=post.id) x
+        form.delete-reply-form(id=`reply-form-${index}` action='delete-reply' method='post' style='visibility: hidden; height: 0; width: 20%;')
+          input(type='hidden' name='id' value=reply.id)
+          input(type='hidden' name='postId' value=post.id)
+          if(session.nickname)
+            input.post-delete-btn(type='submit' value='삭제')
+          else
+            input.reply-pwd(type='password' name='pwd' required placeholder='비밀번호')
+            input.post-delete-btn(type='submit' value='삭제')
+
+    form.write-reply(action = 'reply' method='post')
+      input(type='hidden' name='id' value=post.id)
+      input.write-reply-nickname(type="text" name="nickname" placeholder="이름" maxlength=10)
+      input.write-reply-password(type="password" name="pwd" required placeholder="비밀번호" maxlength=6)
+      textarea.write-reply-text(name="reply_body" required placeholder="댓글을 입력해주세요" rows="5" maxlength=1024)
+      input.write-reply-submit(type='submit' value='입력')
+
   script(src = '/scripts/quill-post.js')
