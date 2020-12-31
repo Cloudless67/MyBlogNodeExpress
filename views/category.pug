@@ -9,5 +9,6 @@ block post
       .posts-list
         a(href=`/post/${post.id}`)
           h3=post.title
-          small=`조회 ${post.views}`
+          if(session.nickname)
+            small=`조회 ${post.views} | 댓글 ${post.replies}`
           p=JSON.parse(post.body).ops[0].insert
