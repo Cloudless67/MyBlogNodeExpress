@@ -6,7 +6,7 @@ router.get('/:name', (req, res) => {
 
   req.database.query(`SELECT * FROM post join category on post.category=category.name WHERE url = '${category}'`, (err, rows) => {
     if(err) throw err;
-
+    console.log(rows)
     req.database.query(`SELECT * FROM category WHERE url = '${category}';`, (err, cat) => {
       if(err) throw err;
       

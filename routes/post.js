@@ -21,8 +21,8 @@ router.post('/write', (req, res) => {
     let category = req.database.escape(req.body.category);
     let title = req.database.escape(req.body.title);
     let body = req.database.escape(req.body.body);
-    req.database.query('INSERT INTO post (category, title, writtentime, body, views)' + 
-    `VALUES (${category}, ${title}, '${moment().format()}', ${body}, 0);`, (err, result) => {
+    req.database.query('INSERT INTO post (category, title, writtentime, body, views, replies)' + 
+    `VALUES (${category}, ${title}, '${moment().format()}', ${body}, 0, 0);`, (err, result) => {
       if(err) throw err;
       console.log(req.body);
       res.status(200).redirect(`/post/${result.insertId}`);
@@ -82,6 +82,7 @@ router.post('/reply', (req, res) => {
     if(err) throw err;
     req.database.query(`INSERT INTO REPLY (PWD, POST_ID, WRITTENTIME, NICKNAME, BODY) VALUES ("${hash}", ${req.body.id}, "${moment().format()}", ${nickname}, ${body});`, (e) => {
       if (e) throw e;
+      req.database.query(`UPDATE post SET replies = replies + 1 WHERE id = ${req.body.id};`)
       res.status(200).redirect(`/post/${req.body.id}`);
     });
   });
@@ -92,6 +93,7 @@ router.post('/delete-reply', (req, res) => {
   if(req.session.nickname){
     req.database.query(`DELETE FROM reply WHERE id = ${id};`, (err3) => {
       if (err3) throw err3;
+      req.database.query(`UPDATE post SET replies = replies - 1 WHERE id = ${req.body.postId};`)
       res.status(200).redirect(`/post/${req.body.postId}`);
     })
   }
