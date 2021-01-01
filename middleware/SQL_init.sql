@@ -14,6 +14,7 @@ create table if not exists post(
     writtentime datetime,
     body text,
     views int,
+    replies int,
     foreign key (category) references category(name)
 );
 

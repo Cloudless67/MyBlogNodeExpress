@@ -66,6 +66,7 @@ router.post('/delete', (req, res) => {
   if(CheckAuth(req, res)){
     req.database.query(`DELETE FROM post WHERE id = ${req.body.id};`, (err) => {
       if (err) throw err;
+      req.database.query(`DELETE FROM reply WHERE post_id = ${req.body.id};`)
       res.status(200).redirect('/');  
     })
   }
