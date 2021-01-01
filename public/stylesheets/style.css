@@ -156,10 +156,6 @@ input[type="submit"] {
 }
 
 @media screen and (max-width: 1000px) {
-
-  html * {
-    font-size: 2rem;
-  }
   
   .Body {
     width: 100%;
@@ -174,55 +170,23 @@ input[type="submit"] {
     min-height: 200px;
     border: 1px lightgray solid;
     background: white;
-    font-size: 16px;
     margin: 25px 0px;
     box-sizing: border-box;
-  }
-
-  h1 {
-    font-size: 4rem;
-  }
-  
-  h2 {
-    font-size: 3rem;
-  }
-  
-  h3 {
-    font-size: 2rem;
-  }
-  
-  p {
-    font-size: 2rem;
   }
 
   input[type="submit"] {
     background-color: var(--primary-color);
     border: none;
     color: white;
-    font-size: 2rem;
-  }
-
-  small {
-    font-size: 1.3rem;
   }
 
   .Top {
     background: var(--primary-color);
-    height: 8rem;
   }
 
   #Logo h1{
     visibility: hidden;
     width: 0;
     height: 0;
-  }
-
-  .Login > a {
-    font-size: 3rem;
-    color: white;
-  }
-
-  .write_reply {
-    font-size: 2rem;
   }
 }

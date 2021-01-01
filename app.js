@@ -7,7 +7,6 @@ const session = require('express-session');
 const dotenv = require('dotenv');
 dotenv.config({path: './config.env'});
 const MySQLStore = require('express-mysql-session')(session);
-const fs = require('fs');
 
 let indexRouter = require('./routes/index');
 let apiRouter = require('./routes/api');
