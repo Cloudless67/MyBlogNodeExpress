@@ -82,8 +82,11 @@
 }
 
 article {
-  margin-bottom: 10px;
   border-bottom: 1px solid lightgray;
+}
+
+.category {
+  margin: 0;
 }
 
 .write-reply {

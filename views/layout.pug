@@ -1,25 +1,21 @@
 extends top-layout
 
 block content
-  section.Body
+  main
     block post
-  aside.category-navbar
-    div
+  aside#category-navbar
+    header
       h1(style='padding-left:10px; display: inline-block;' + session.nickname?'':'visibility:hidden;') 게시판
         button#category-settings(type = 'button' style='visibility: ' + session.nickname?';':'visibility:hidden;')
           img#category-settings-icon(src="/images/gear.png", alt="gear.png")
 
-
-    each category in categories
-      p.category-list
-        a.category-list-text(href='/category/' + category.url)=' - ' + category.name
+    nav
+      each category in categories
+        p.category-list
+          a.category-list-text(href='/category/' + category.url)=' - ' + category.name
         
     p#category-add(style='visibility: hidden;')
       input#category-add-text(type="text", name="category-name", placeholder='category name')
       button#category-add-submit(type='button') 완료
-    
-    if(session.nickname !== undefined)
-      #write-button
-        a(href='/post/write') 글쓰기
 
   script(src = '/scripts/category-settings.js')
