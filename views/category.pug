@@ -4,11 +4,13 @@ block post
 
   link(rel='stylesheet', href='/stylesheets/category.css')
   div
-    h1.BodyTitle= selectedCategory
-    each post in posts
-      .posts-list
-        a(href=`/post/${post.id}`)
-          h3=post.title
-          if(session.nickname)
-            small=`조회 ${post.views} | 댓글 ${post.replies}`
-          p=JSON.parse(post.body).ops[0].insert
+    header
+      h1.BodyTitle= selectedCategory
+    nav
+      each post in posts
+        .posts-list
+          a(href=`/post/${post.id}`)
+            h3=post.title
+            if(session.nickname)
+              small=`조회 ${post.views} | 댓글 ${post.replies}`
+            p=JSON.parse(post.body).ops[0].insert

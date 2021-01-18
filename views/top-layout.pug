@@ -18,16 +18,26 @@ html
     link(rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon")
     link(rel="icon" href="/images/favicon.ico" type="image/x-icon")
     link(rel='stylesheet', href='/stylesheets/style.css')
+
   body
-    if(session)
-      header.Top
-        a#Logo(href = '/')
-          img(src='/images/Logo_White.png')
-          h1 Cloudless' Blog
-        .Login
-          if(session.nickname !== undefined)
-            a(href='/logout') 로그아웃
-          else
-            a(href='/login') 로그인
-    .Content
-      block content
+    #Element-Wrapper
+      if(session)
+        header#Top
+          a#Logo(href = '/')
+            img(src='/images/Logo_White.png')
+            h1 Cloudless' Blog
+          .Login
+            if(session.nickname !== undefined)
+              a(href='/logout') 로그아웃
+            else
+              a(href='/login') 로그인
+
+      #Middle
+        block content
+
+      footer#Bottom
+        small cloudless67@cloudless.blog | &copy; 2021 by Cloudless
+    
+    if(session && session.nickname !== undefined)
+      #write-button
+        a(href='/post/write') 글쓰기
