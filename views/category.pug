@@ -1,16 +1,14 @@
 extends layout
 
 block post
-
-  link(rel='stylesheet', href='/stylesheets/category.css')
   div
     header
       h1.BodyTitle= selectedCategory
     nav
       each post in posts
-        .posts-list
+        .list
           a(href=`/post/${post.id}`)
-            h3=post.title
+            h3.my-2=post.title
             if(session.nickname)
               small=`조회 ${post.views} | 댓글 ${post.replies}`
             p=JSON.parse(post.body).ops[0].insert

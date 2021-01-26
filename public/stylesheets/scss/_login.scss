@@ -1,0 +1,44 @@
+.Login-div {
+  max-width: 1200px;
+  width: 70%;
+  padding: 2rem;
+  font-size: 1.5rem;
+  background-color: white;
+
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: auto auto 10rem;
+  grid-template-rows: 2rem 2rem;
+  grid-template-areas:
+    "id_text id_input submit"
+    "pwd_text pwd_input submit";
+
+  label {
+    &[for="id"] {
+      width: 100%;
+      grid-area: id_text;
+    }
+
+    &[for="password"] {
+      width: 100%;
+      grid-area: pwd_text;
+    }
+  }
+
+  input {
+    &[type="text"] {
+      width: 100%;
+      grid-area: id_input;
+    }
+
+    &[type="password"] {
+      width: 100%;
+      grid-area: pwd_input;
+    }
+
+    &[type="submit"] {
+      grid-area: submit;
+      margin: 0 0.5rem;
+    }
+  }
+}

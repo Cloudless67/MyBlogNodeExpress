@@ -1,15 +1,12 @@
 extends top-layout
 
 block content
-  link(rel='stylesheet', href='/stylesheets/login.css')
-  .Login-div
-    form(action='login' method='post')
-      .Login-input
-        label(for='id') ID
-        input(type='text' name='id')
-        br
-        label(for='id') password
-        input(type='password' name='password')
-      
-      .Login-submit
-        input(type='submit' value='로그인')
+  
+  form.Login-div(action='login' method='post')
+    label(for='id') ID
+    input(type='text' name='id')
+    br
+    label(for='password') password
+    input(type='password' name='password')
+    
+    input(type='submit' value='로그인')
