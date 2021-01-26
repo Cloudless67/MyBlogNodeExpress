@@ -1,0 +1,333 @@
+.hl {
+  height: 1px;
+  width: 100%;
+  background-color: lightgray;
+  margin: 10px 0;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+nav .list {
+  padding: 10px 0;
+  border-bottom: solid 1px lightgray;
+}
+nav .list:last-child {
+  border-bottom: none;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-black {
+  color: black;
+}
+
+.pre-wrap {
+  white-space: pre-wrap;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.BodyDateTime {
+  display: block;
+  text-align: right;
+  color: gray;
+}
+
+#editor-container {
+  font-size: 1rem;
+}
+
+.deletenedit {
+  display: flex;
+  justify-content: flex-end;
+}
+.deletenedit form {
+  padding: 0 10px;
+}
+
+.Replies {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.Reply {
+  background-color: #b2c7d9;
+  border-radius: 4px;
+  padding: 5px;
+  margin-bottom: 0.3em;
+}
+
+.ReplyBody {
+  border-radius: 4px;
+  background-color: white;
+  max-width: 70%;
+  padding: 0.3em;
+  margin: 0;
+  margin-right: 4px;
+  white-space: pre-line;
+  display: inline-block;
+}
+
+.reply-delete-btn {
+  border: none;
+  border-radius: 4px;
+  background-color: red;
+  color: white;
+  padding: 0 4px;
+  margin: 0 4px;
+}
+
+.write-reply {
+  display: grid;
+  grid-template-columns: auto auto 80px;
+  grid-template-areas: "name pwd submit" "body body submit";
+}
+.write-reply .write-reply-nickname {
+  width: 100%;
+  grid-area: name;
+}
+.write-reply .write-reply-password {
+  width: 100%;
+  grid-area: pwd;
+}
+.write-reply .write-reply-text {
+  grid-area: body;
+  resize: none;
+}
+.write-reply .write-reply-submit {
+  grid-area: submit;
+}
+
+.Login-div {
+  max-width: 1200px;
+  width: 70%;
+  padding: 2rem;
+  font-size: 1.5rem;
+  background-color: white;
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: auto auto 10rem;
+  grid-template-rows: 2rem 2rem;
+  grid-template-areas: "id_text id_input submit" "pwd_text pwd_input submit";
+}
+.Login-div label[for=id] {
+  width: 100%;
+  grid-area: id_text;
+}
+.Login-div label[for=password] {
+  width: 100%;
+  grid-area: pwd_text;
+}
+.Login-div input[type=text] {
+  width: 100%;
+  grid-area: id_input;
+}
+.Login-div input[type=password] {
+  width: 100%;
+  grid-area: pwd_input;
+}
+.Login-div input[type=submit] {
+  grid-area: submit;
+  margin: 0 0.5rem;
+}
+
+* {
+  font: 1em "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+
+body {
+  background: lightgray;
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+h4 {
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+small,
+time {
+  font-size: 0.8rem;
+}
+
+a {
+  color: black;
+  text-decoration: solid;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+li {
+  list-style-type: none;
+}
+
+input[type=submit] {
+  background-color: #01579b;
+  border: none;
+  color: white;
+  padding: 4px;
+}
+
+#Element-Wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#Element-Wrapper #Top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #01579b;
+  height: 4rem;
+  padding: 0 20px;
+}
+#Element-Wrapper #Top #Logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#Element-Wrapper #Top #Logo img {
+  height: 4rem;
+}
+#Element-Wrapper #Top #Logo h1 {
+  margin-left: 20px;
+  margin-bottom: 0;
+  color: white;
+}
+#Element-Wrapper #Top .Login {
+  font-size: 1.5rem;
+}
+#Element-Wrapper #Middle {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 25px;
+}
+#Element-Wrapper #Middle main {
+  max-width: 1200px;
+  min-width: 250px;
+  width: 70%;
+  background: white;
+  box-sizing: border-box;
+  padding: 20px;
+  margin-right: 20px;
+}
+#Element-Wrapper #Middle main .list small {
+  float: right;
+}
+#Element-Wrapper #Middle main .list p {
+  color: #999999;
+}
+#Element-Wrapper #Middle #category-navbar {
+  line-height: 2rem;
+  width: 25%;
+  height: fit-content;
+  min-height: 200px;
+  padding: 10px;
+  border: 1px lightgray solid;
+  background: white;
+  font-size: 16px;
+}
+#Element-Wrapper #Middle #category-navbar a {
+  font-size: 1.3em;
+  margin: 0;
+}
+#Element-Wrapper #Bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #002f6c;
+  width: 100%;
+  height: 4rem;
+  color: white;
+}
+
+#write-button {
+  position: fixed;
+  background-color: #01579b;
+  padding: 2px;
+  right: 20px;
+  bottom: 80px;
+}
+
+.input-text {
+  width: 90%;
+}
+
+#category-settings {
+  display: inline-block;
+  border: none;
+  background: none;
+}
+#category-settings:hover {
+  cursor: pointer;
+}
+#category-settings:focus {
+  border: none;
+}
+#category-settings #category-settings-icon {
+  width: 16px;
+  height: 16px;
+}
+
+@media screen and (max-width: 1000px) {
+  #Element-Wrapper #Middle {
+    display: block;
+    margin: 25px 0;
+  }
+  #Element-Wrapper #Middle main {
+    width: 100%;
+    background: white;
+    box-sizing: border-box;
+    margin: 0;
+    margin-bottom: 25px;
+    margin-right: 0;
+  }
+  #Element-Wrapper #Middle #category-navbar {
+    float: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #Logo h1 {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
+
+  #write-button {
+    bottom: 20px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

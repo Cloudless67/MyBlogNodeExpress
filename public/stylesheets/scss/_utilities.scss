@@ -1,0 +1,42 @@
+// Horizontal Line
+.hl {
+  height: 1px;
+  width: 100%;
+  background-color: lightgray;
+  margin: 10px 0;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+// List with lines
+nav {
+  .list {
+    padding: 10px 0;
+    border-bottom: solid 1px lightgray;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+// Text Colors
+.text-white {
+  color: white;
+}
+
+.text-black {
+  color: black;
+}
+
+// Word Wrap
+.pre-wrap {
+  white-space: pre-wrap;
+}
+
+// Bold
+.bold {
+  font-weight: bold;
+}

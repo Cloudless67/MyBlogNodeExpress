@@ -5,13 +5,14 @@ block content
     block post
   aside#category-navbar
     header
-      h1(style='padding-left:10px; display: inline-block;' + session.nickname?'':'visibility:hidden;') 게시판
-        button#category-settings(type = 'button' style='visibility: ' + session.nickname?';':'visibility:hidden;')
-          img#category-settings-icon(src="/images/gear.png", alt="gear.png")
+        h1 게시판
+          if(session.nickname !== undefined)
+            button#category-settings
+              img#category-settings-icon(src="/images/gear.png", alt="gear.png")
 
     nav
       each category in categories
-        p.category-list
+        p.list
           a.category-list-text(href='/category/' + category.url)=' - ' + category.name
         
     p#category-add(style='visibility: hidden;')

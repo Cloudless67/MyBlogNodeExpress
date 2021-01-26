@@ -6,9 +6,10 @@ module.exports = function(host, user, password, database){
     host     : host,
     user     : user,
     password : password,
-    database : database
+    database : database,
+    multipleStatements: true
   });
-  fs.readFile('./middleware/SQL_init.sql', (err, data) => {
+  fs.readFile('./middleware/SQL_init.sql', 'utf8', (err, data) => {
     if(err) throw err;
     connection.query(data.toString());
   })
