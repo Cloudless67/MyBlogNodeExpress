@@ -1,3 +1,33 @@
+h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+h4 {
+  font-size: 0.6rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+small,
+time,
+h4 {
+  font-size: 0.8rem;
+}
+
 .hl {
   height: 1px;
   width: 100%;
@@ -21,8 +51,16 @@ nav .list:last-child {
   color: white;
 }
 
+.text-gray {
+  color: gray;
+}
+
 .text-black {
   color: black;
+}
+
+.bg-white {
+  background-color: white;
 }
 
 .pre-wrap {
@@ -36,7 +74,6 @@ nav .list:last-child {
 .BodyDateTime {
   display: block;
   text-align: right;
-  color: gray;
 }
 
 #editor-container {
@@ -51,36 +88,29 @@ nav .list:last-child {
   padding: 0 10px;
 }
 
-.Replies {
-  display: block;
-  margin-bottom: 1rem;
-}
-
 .Reply {
   background-color: #b2c7d9;
   border-radius: 4px;
-  padding: 5px;
-  margin-bottom: 0.3em;
+  padding: 0.3rem;
+  margin-bottom: 0.3rem;
 }
 
 .ReplyBody {
   border-radius: 4px;
-  background-color: white;
   max-width: 70%;
-  padding: 0.3em;
+  padding: 0.3rem;
+  display: inline-block;
   margin: 0;
   margin-right: 4px;
-  white-space: pre-line;
-  display: inline-block;
 }
 
 .reply-delete-btn {
-  border: none;
   border-radius: 4px;
   background-color: red;
-  color: white;
   padding: 0 4px;
   margin: 0 4px;
+  border: none;
+  border-radius: 4px;
 }
 
 .write-reply {
@@ -89,11 +119,9 @@ nav .list:last-child {
   grid-template-areas: "name pwd submit" "body body submit";
 }
 .write-reply .write-reply-nickname {
-  width: 100%;
   grid-area: name;
 }
 .write-reply .write-reply-password {
-  width: 100%;
   grid-area: pwd;
 }
 .write-reply .write-reply-text {
@@ -102,19 +130,29 @@ nav .list:last-child {
 }
 .write-reply .write-reply-submit {
   grid-area: submit;
+  margin-left: 0.5rem;
 }
 
+@media screen and (max-width: 1000px) {
+  .write-reply {
+    width: 100%;
+    padding: 0;
+    font-size: 1rem;
+    grid-template-columns: 42% 42% 16%;
+  }
+}
 .Login-div {
-  max-width: 1200px;
+  max-width: 800px;
   width: 70%;
   padding: 2rem;
   font-size: 1.5rem;
-  background-color: white;
   display: grid;
   grid-gap: 0.5rem;
-  grid-template-columns: auto auto 10rem;
-  grid-template-rows: 2rem 2rem;
+  grid-template-columns: 10rem auto 10rem;
   grid-template-areas: "id_text id_input submit" "pwd_text pwd_input submit";
+}
+.Login-div label {
+  vertical-align: center;
 }
 .Login-div label[for=id] {
   width: 100%;
@@ -137,6 +175,15 @@ nav .list:last-child {
   margin: 0 0.5rem;
 }
 
+@media screen and (max-width: 1000px) {
+  .Login-div {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    font-size: 1rem;
+    grid-template-columns: 20% 50% 30%;
+  }
+}
 * {
   font: 1em "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: 0;
@@ -144,35 +191,6 @@ nav .list:last-child {
 
 body {
   background: lightgray;
-}
-
-h1 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-h2 {
-  font-size: 1.4rem;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-h3 {
-  font-size: 1rem;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-h4 {
-  font-size: 0.8rem;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-small,
-time {
-  font-size: 0.8rem;
 }
 
 a {
@@ -200,68 +218,64 @@ input[type=submit] {
   flex-direction: column;
   justify-content: space-between;
 }
-#Element-Wrapper #Top {
+
+#Top {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  justify-content: space-between;
   background: #01579b;
   height: 4rem;
   padding: 0 20px;
 }
-#Element-Wrapper #Top #Logo {
+
+#Logo {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-#Element-Wrapper #Top #Logo img {
+#Logo img {
   height: 4rem;
+  margin-right: 20px;
 }
-#Element-Wrapper #Top #Logo h1 {
-  margin-left: 20px;
-  margin-bottom: 0;
-  color: white;
-}
-#Element-Wrapper #Top .Login {
-  font-size: 1.5rem;
-}
-#Element-Wrapper #Middle {
+
+#Middle {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
+  align-items: unset;
+  flex-wrap: wrap;
   margin: 25px;
 }
-#Element-Wrapper #Middle main {
+
+main {
   max-width: 1200px;
   min-width: 250px;
   width: 70%;
-  background: white;
   box-sizing: border-box;
   padding: 20px;
   margin-right: 20px;
 }
-#Element-Wrapper #Middle main .list small {
+main .list small {
   float: right;
 }
-#Element-Wrapper #Middle main .list p {
-  color: #999999;
-}
-#Element-Wrapper #Middle #category-navbar {
-  line-height: 2rem;
+
+#category-navbar {
   width: 25%;
   height: fit-content;
   min-height: 200px;
   padding: 10px;
-  border: 1px lightgray solid;
   background: white;
-  font-size: 16px;
 }
-#Element-Wrapper #Middle #category-navbar a {
-  font-size: 1.3em;
+#category-navbar a {
+  font-size: 1.4rem;
   margin: 0;
 }
-#Element-Wrapper #Bottom {
+
+#Bottom {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -280,8 +294,9 @@ input[type=submit] {
   bottom: 80px;
 }
 
-.input-text {
-  width: 90%;
+#input-text {
+  box-sizing: border-box;
+  width: 100%;
 }
 
 #category-settings {
@@ -292,28 +307,25 @@ input[type=submit] {
 #category-settings:hover {
   cursor: pointer;
 }
-#category-settings:focus {
-  border: none;
-}
 #category-settings #category-settings-icon {
   width: 16px;
   height: 16px;
 }
 
 @media screen and (max-width: 1000px) {
-  #Element-Wrapper #Middle {
-    display: block;
+  #Middle {
     margin: 25px 0;
   }
-  #Element-Wrapper #Middle main {
+
+  main {
     width: 100%;
-    background: white;
     box-sizing: border-box;
     margin: 0;
     margin-bottom: 25px;
     margin-right: 0;
   }
-  #Element-Wrapper #Middle #category-navbar {
+
+  #category-navbar {
     float: none;
     width: 100%;
     box-sizing: border-box;
@@ -326,7 +338,7 @@ input[type=submit] {
   }
 
   #write-button {
-    bottom: 20px;
+    bottom: 80px;
   }
 }
 

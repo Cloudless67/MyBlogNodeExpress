@@ -1,44 +1,54 @@
+@mixin grid-item($grid-area) {
+  width: 100%;
+  grid-area: $grid-area;
+}
+
 .Login-div {
-  max-width: 1200px;
+  max-width: 800px;
   width: 70%;
   padding: 2rem;
   font-size: 1.5rem;
-  background-color: white;
 
   display: grid;
   grid-gap: 0.5rem;
-  grid-template-columns: auto auto 10rem;
-  grid-template-rows: 2rem 2rem;
+  grid-template-columns: 10rem auto 10rem;
   grid-template-areas:
     "id_text id_input submit"
     "pwd_text pwd_input submit";
 
   label {
+    vertical-align: center;
     &[for="id"] {
-      width: 100%;
-      grid-area: id_text;
+      @include grid-item(id_text);
     }
 
     &[for="password"] {
-      width: 100%;
-      grid-area: pwd_text;
+      @include grid-item(pwd_text);
     }
   }
 
   input {
     &[type="text"] {
-      width: 100%;
-      grid-area: id_input;
+      @include grid-item(id_input);
     }
 
     &[type="password"] {
-      width: 100%;
-      grid-area: pwd_input;
+      @include grid-item(pwd_input);
     }
 
     &[type="submit"] {
       grid-area: submit;
       margin: 0 0.5rem;
     }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .Login-div {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    font-size: 1rem;
+    grid-template-columns: 20% 50% 30%;
   }
 }

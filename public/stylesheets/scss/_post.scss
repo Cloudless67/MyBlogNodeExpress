@@ -3,7 +3,6 @@ $reply-background: #b2c7d9;
 .BodyDateTime {
   display: block;
   text-align: right;
-  color: gray;
 }
 
 #editor-container {
@@ -19,35 +18,31 @@ $reply-background: #b2c7d9;
   }
 }
 
-.Replies {
-  display: block;
-  margin-bottom: 1rem;
-}
-
 .Reply {
   background-color: $reply-background;
   border-radius: 4px;
-  padding: 5px;
-  margin-bottom: 0.3em;
+  padding: 0.3rem;
+  margin-bottom: 0.3rem;
 }
+
 .ReplyBody {
   border-radius: 4px;
-  background-color: white;
   max-width: 70%;
-  padding: 0.3em;
-  margin: 0;
-  margin-right: 4px;
-  white-space: pre-line;
+  padding: 0.3rem;
   display: inline-block;
+  margin: 0 {
+    right: 4px;
+  }
 }
 
 .reply-delete-btn {
-  border: none;
   border-radius: 4px;
   background-color: red;
-  color: white;
   padding: 0 4px;
   margin: 0 4px;
+  border: none {
+    radius: 4px;
+  }
 }
 
 .write-reply {
@@ -58,12 +53,10 @@ $reply-background: #b2c7d9;
     "body body submit";
 
   .write-reply-nickname {
-    width: 100%;
     grid-area: name;
   }
 
   .write-reply-password {
-    width: 100%;
     grid-area: pwd;
   }
 
@@ -74,5 +67,15 @@ $reply-background: #b2c7d9;
 
   .write-reply-submit {
     grid-area: submit;
+    margin-left: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .write-reply {
+    width: 100%;
+    padding: 0;
+    font-size: 1rem;
+    grid-template-columns: 42% 42% 16%;
   }
 }

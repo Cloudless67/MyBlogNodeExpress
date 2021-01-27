@@ -11,4 +11,4 @@ block post
             h3.my-2=post.title
             if(session.nickname)
               small=`조회 ${post.views} | 댓글 ${post.replies}`
-            p=JSON.parse(post.body).ops[0].insert
+            p.text-gray=JSON.parse(post.body).ops[0].insert

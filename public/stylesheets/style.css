@@ -13,14 +13,26 @@ body {
 
 h1 {
   font-size: 1.8rem;
+  font-weight: bold;
+  margin: 10px 0;
 }
 
 h2 {
   font-size: 1.4rem;
+  font-weight: bold;
+  margin: 10px 0;
 }
 
 h3 {
   font-size: 1rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+h3 {
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin: 10px 0;
 }
 
 a {
@@ -133,7 +145,7 @@ main {
   bottom: 80px;
 }
 
-#write-button>a {
+#write-button > a {
   color: white;
 }
 
@@ -171,12 +183,11 @@ main {
 }
 
 @media screen and (max-width: 1000px) {
-
   #Element-Wrapper {
     min-height: 100vh;
   }
 
-  #Logo h1{
+  #Logo h1 {
     visibility: hidden;
     width: 0;
     height: 0;
@@ -186,7 +197,7 @@ main {
     display: block;
     margin: 25px 0;
   }
-  
+
   main {
     width: 100%;
     background: white;
@@ -195,7 +206,7 @@ main {
     margin-bottom: 25px;
     margin-right: 0;
   }
-  
+
   #category-navbar {
     width: 100%;
   }

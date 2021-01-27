@@ -6,6 +6,13 @@ $primary-color: #01579b;
 $primary-light: #4f83cc;
 $primary-dark: #002f6c;
 
+@mixin centered-hor-flexbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 * {
   font: 1em "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: 0;
@@ -13,35 +20,6 @@ $primary-dark: #002f6c;
 
 body {
   background: lightgray;
-}
-
-h1 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-h2 {
-  font-size: 1.4rem;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-h3 {
-  font-size: 1rem;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-h4 {
-  font-size: 0.8rem;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-small,
-time {
-  font-size: 0.8rem;
 }
 
 a {
@@ -69,91 +47,64 @@ input[type="submit"] {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
 
-  #Top {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background: $primary-color;
+#Top {
+  @include centered-hor-flexbox;
+  justify-content: space-between;
+  background: $primary-color;
+  height: 4rem;
+  padding: 0 20px;
+}
+
+#Logo {
+  @include centered-hor-flexbox;
+
+  img {
     height: 4rem;
-    padding: 0 20px;
-
-    #Logo {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-
-      img {
-        height: 4rem;
-      }
-
-      h1 {
-        margin-left: 20px;
-        margin-bottom: 0;
-        color: white;
-      }
-    }
-
-    .Login {
-      font-size: 1.5rem;
-    }
+    margin-right: 20px;
   }
+}
 
-  #Middle {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 25px;
+#Middle {
+  @include centered-hor-flexbox;
+  align-items: unset;
+  flex-wrap: wrap;
+  margin: 25px;
+}
 
-    main {
-      max-width: 1200px;
-      min-width: 250px;
-      width: 70%;
-      background: white;
-      box-sizing: border-box;
-      padding: 20px;
-      margin-right: 20px;
+main {
+  max-width: 1200px;
+  min-width: 250px;
+  width: 70%;
+  box-sizing: border-box;
+  padding: 20px;
+  margin-right: 20px;
 
-      .list {
-        small {
-          float: right;
-        }
-
-        p {
-          color: #999999;
-        }
-      }
-    }
-
-    #category-navbar {
-      line-height: 2rem;
-      width: 25%;
-      height: fit-content;
-      min-height: 200px;
-      padding: 10px;
-      border: 1px lightgray solid;
-      background: white;
-      font-size: 16px;
-
-      a {
-        font-size: 1.3em;
-        margin: 0;
-      }
-    }
+  .list small {
+    float: right;
   }
+}
 
-  #Bottom {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background: $primary-dark;
-    width: 100%;
-    height: 4rem;
-    color: white;
+#category-navbar {
+  width: 25%;
+  height: fit-content;
+  min-height: 200px;
+  padding: 10px;
+  background: white;
+
+  a {
+    font-size: 1.4rem;
+    margin: 0;
   }
+}
+
+#Bottom {
+  @include centered-hor-flexbox;
+  background: $primary-dark;
+  width: 100%;
+  height: 4rem;
+  color: white;
 }
 
 #write-button {
@@ -164,8 +115,9 @@ input[type="submit"] {
   bottom: 80px;
 }
 
-.input-text {
-  width: 90%;
+#input-text {
+  box-sizing: border-box;
+  width: 100%;
 }
 
 #category-settings {
@@ -177,10 +129,6 @@ input[type="submit"] {
     cursor: pointer;
   }
 
-  &:focus {
-    border: none;
-  }
-
   #category-settings-icon {
     width: 16px;
     height: 16px;
@@ -188,26 +136,23 @@ input[type="submit"] {
 }
 
 @media screen and (max-width: 1000px) {
-  #Element-Wrapper {
-    #Middle {
-      display: block;
-      margin: 25px 0;
+  #Middle {
+    margin: 25px 0;
+  }
 
-      main {
-        width: 100%;
-        background: white;
-        box-sizing: border-box;
-        margin: 0;
-        margin-bottom: 25px;
-        margin-right: 0;
-      }
-
-      #category-navbar {
-        float: none;
-        width: 100%;
-        box-sizing: border-box;
-      }
+  main {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 {
+      bottom: 25px;
+      right: 0;
     }
+  }
+
+  #category-navbar {
+    float: none;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   #Logo h1 {
@@ -217,6 +162,6 @@ input[type="submit"] {
   }
 
   #write-button {
-    bottom: 20px;
+    bottom: 80px;
   }
 }
