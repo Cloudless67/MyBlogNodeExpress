@@ -1,16 +1,37 @@
 const express = require("express");
 const moment = require("moment");
-const fs = require("fs");
 const { render } = require("../app");
 const { ifError } = require("assert");
 const bcrypt = require("bcrypt");
 const marked = require("marked");
-const hljs = require("highlight.js");
+const Prism = require("prismjs");
 const katex = require("katex");
 const { info } = require("console");
-const { highlight } = require("highlight.js");
 const router = express.Router();
-hljs.registerLanguage("pug", require("../src/pug.js"));
+const loadLanguages = require("prismjs/components/");
+loadLanguages([
+  "bash",
+  "csharp",
+  "batch",
+  "c",
+  "cpp",
+  "docker",
+  "git",
+  "http",
+  "ignore",
+  "java",
+  "json",
+  "latex",
+  "markdown",
+  "matlab",
+  "mongodb",
+  "properties",
+  "pug",
+  "regex",
+  "sass",
+  "scss",
+  "sql",
+]);
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -25,20 +46,12 @@ marked.setOptions({
 
 const renderer = {
   code(code, infostring) {
-    const validLanguage = hljs.getLanguage(infostring)
-      ? infostring
-      : "plaintext";
-    if (infostring === "TeX") {
-      return katex.renderToString(code, {
-        displayMode: true,
-        throwOnError: false,
-      });
-    } else {
-      return `
-<pre class = "hljs ${infostring}"><code>${
-        hljs.highlight(validLanguage, code).value
-      }</code></pre>`;
-    }
+    return `
+<pre class = "language-${infostring}"><code class = "language-${infostring}">${Prism.highlight(
+      code,
+      Prism.languages[infostring],
+      infostring
+    )}</code></pre>`;
   },
   codespan(code) {
     if (code[0] === "$") {
