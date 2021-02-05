@@ -1,2 +1,3 @@
 # MyBlogNodeExpress
-My blog node/express version
+
+My node/express based blog

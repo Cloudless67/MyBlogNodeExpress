@@ -12,6 +12,7 @@ $reply-background: #b2c7d9;
 .deletenedit {
   display: flex;
   justify-content: flex-end;
+  margin: 10px 0;
 
   form {
     padding: 0 10px;
@@ -62,7 +63,6 @@ $reply-background: #b2c7d9;
 
   .write-reply-text {
     grid-area: body;
-    resize: none;
   }
 
   .write-reply-submit {

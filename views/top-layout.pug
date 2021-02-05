@@ -5,10 +5,6 @@ html
       title Cloudless의 블로그
       meta(property="og:title" content="Cloudless의 블로그")
       meta(property="og:description" content="개발 관련 및 잡다한 글을 위한 블로그입니다.")
-    else
-      title=post.title
-      meta(property="og:title" content=post.title)
-      meta(property="og:description" content=JSON.parse(post.body).ops[0].insert)
 
     meta(name="viewport" content="width=device-width, initial-scale=1")
     meta(property="og:url" content="https://www.cloudless.blog")

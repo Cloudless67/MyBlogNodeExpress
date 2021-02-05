@@ -13,8 +13,16 @@ $primary-dark: #002f6c;
   align-items: center;
 }
 
-* {
-  font: 1em "Lucida Grande", Helvetica, Arial, sans-serif;
+body,
+input,
+select,
+textarea {
+  font-family: "맑은고딕", "sans-serif";
+}
+
+header,
+footer,
+body {
   margin: 0;
 }
 
@@ -35,11 +43,37 @@ li {
   list-style-type: none;
 }
 
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
 input[type="submit"] {
   background-color: $primary-color;
   border: none;
   color: white;
   padding: 4px;
+}
+
+pre {
+  border-radius: 4px;
+}
+
+textarea {
+  resize: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+#input-markdown {
+  box-sizing: border-box;
+  width: 100%;
+  height: 60vh;
 }
 
 #Element-Wrapper {
@@ -62,6 +96,7 @@ input[type="submit"] {
 
   img {
     height: 4rem;
+    width: auto;
     margin-right: 20px;
   }
 }
