@@ -1,61 +1,267 @@
 @charset "UTF-8";
-@use 'utilities';
-@use 'post';
-@use 'login';
+h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+h4 {
+  font-size: 0.6rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+small,
+time,
+h4 {
+  font-size: 0.8rem;
+}
+
+.hl {
+  height: 1px;
+  width: 100%;
+  background-color: lightgray;
+  margin: 10px 0;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+nav .list {
+  padding: 10px 0;
+  border-bottom: solid 1px lightgray;
+  margin: 0;
+}
+nav .list:last-child {
+  border-bottom: none;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-gray {
+  color: gray;
+}
+
+.text-black {
+  color: black;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.pre-wrap {
+  white-space: pre-wrap;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.m0 {
+  margin: 0;
+}
+
+.m1 {
+  margin: 1em;
+}
+
+.BodyDateTime {
+  display: block;
+  text-align: right;
+}
+
+#editor-container {
+  font-size: 1rem;
+}
+
+.deletenedit {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0;
+}
+.deletenedit form {
+  padding: 0 10px;
+}
+
+.Reply {
+  background-color: #b2c7d9;
+  border-radius: 4px;
+  padding: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
+.ReplyBody {
+  border-radius: 4px;
+  max-width: 70%;
+  padding: 0.3rem;
+  display: inline-block;
+  margin: 0;
+  margin-right: 4px;
+}
+
+.reply-delete-btn {
+  border-radius: 4px;
+  background-color: red;
+  padding: 0 4px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 4px;
+}
+
+.write-reply {
+  display: grid;
+  grid-template-columns: auto auto 80px;
+  grid-template-areas: "name pwd submit" "body body submit";
+}
+.write-reply .write-reply-nickname {
+  grid-area: name;
+}
+.write-reply .write-reply-password {
+  grid-area: pwd;
+}
+.write-reply .write-reply-text {
+  grid-area: body;
+}
+.write-reply .write-reply-submit {
+  grid-area: submit;
+  margin-left: 0.5rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .write-reply {
+    width: 100%;
+    padding: 0;
+    font-size: 1rem;
+    grid-template-columns: 42% 42% 16%;
+  }
+}
+.Login-div {
+  max-width: 800px;
+  width: 70%;
+  padding: 2rem;
+  font-size: 1.5rem;
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: 10rem auto 10rem;
+  grid-template-areas: "id_text id_input submit" "pwd_text pwd_input submit";
+}
+.Login-div label {
+  vertical-align: center;
+}
+.Login-div label[for=id] {
+  width: 100%;
+  grid-area: id_text;
+}
+.Login-div label[for=password] {
+  width: 100%;
+  grid-area: pwd_text;
+}
+.Login-div input[type=text] {
+  width: 100%;
+  grid-area: id_input;
+}
+.Login-div input[type=password] {
+  width: 100%;
+  grid-area: pwd_input;
+}
+.Login-div input[type=submit] {
+  grid-area: submit;
+  margin: 0 0.5rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .Login-div {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    font-size: 1rem;
+    grid-template-columns: 20% 50% 30%;
+  }
+}
 body,
 input,
 select,
 textarea {
-  font-family: "맑은고딕", "sans-serif"; }
+  font-family: "맑은고딕", "sans-serif";
+}
 
 header,
 footer,
 body {
-  margin: 0; }
+  margin: 0;
+}
 
 body {
-  background: lightgray; }
+  background: lightgray;
+}
 
 a {
   color: black;
-  text-decoration: solid; }
-  a:hover {
-    text-decoration: underline; }
+  text-decoration: solid;
+}
+a:hover {
+  text-decoration: underline;
+}
 
 li {
-  list-style-type: none; }
+  list-style-type: none;
+}
 
 strong {
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 em {
-  font-style: italic; }
+  font-style: italic;
+}
 
-input[type="submit"] {
+input[type=submit] {
   background-color: #01579b;
   border: none;
   color: white;
-  padding: 4px; }
+  padding: 4px;
+}
 
 pre {
-  border-radius: 4px; }
+  border-radius: 4px;
+}
 
 textarea {
-  resize: none; }
+  resize: none;
+}
 
 img {
-  max-width: 100%; }
+  max-width: 100%;
+}
 
 #input-markdown {
   box-sizing: border-box;
   width: 100%;
-  height: 60vh; }
+  height: 60vh;
+}
 
 #Element-Wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; }
+  justify-content: space-between;
+}
 
 #Top {
   display: flex;
@@ -65,17 +271,20 @@ img {
   justify-content: space-between;
   background: #01579b;
   height: 4rem;
-  padding: 0 20px; }
+  padding: 0 20px;
+}
 
 #Logo {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center; }
-  #Logo img {
-    height: 4rem;
-    width: auto;
-    margin-right: 20px; }
+  align-items: center;
+}
+#Logo img {
+  height: 4rem;
+  width: auto;
+  margin-right: 20px;
+}
 
 #Middle {
   display: flex;
@@ -84,7 +293,8 @@ img {
   align-items: center;
   align-items: unset;
   flex-wrap: wrap;
-  margin: 25px; }
+  margin: 25px;
+}
 
 main {
   max-width: 1200px;
@@ -92,19 +302,23 @@ main {
   width: 70%;
   box-sizing: border-box;
   padding: 20px;
-  margin-right: 20px; }
-  main .list small {
-    float: right; }
+  margin-right: 20px;
+}
+main .list small {
+  float: right;
+}
 
 #category-navbar {
   width: 25%;
   height: fit-content;
   min-height: 200px;
   padding: 10px;
-  background: white; }
-  #category-navbar a {
-    font-size: 1.4rem;
-    margin: 0; }
+  background: white;
+}
+#category-navbar a {
+  font-size: 1.4rem;
+  margin: 0;
+}
 
 #Bottom {
   display: flex;
@@ -114,45 +328,61 @@ main {
   background: #002f6c;
   width: 100%;
   height: 4rem;
-  color: white; }
+  color: white;
+}
 
 #write-button {
   position: fixed;
   background-color: #01579b;
   padding: 2px;
   right: 20px;
-  bottom: 80px; }
+  bottom: 80px;
+}
 
 #input-text {
   box-sizing: border-box;
-  width: 100%; }
+  width: 100%;
+}
 
 #category-settings {
   display: inline-block;
   border: none;
-  background: none; }
-  #category-settings:hover {
-    cursor: pointer; }
-  #category-settings #category-settings-icon {
-    width: 16px;
-    height: 16px; }
+  background: none;
+}
+#category-settings:hover {
+  cursor: pointer;
+}
+#category-settings #category-settings-icon {
+  width: 16px;
+  height: 16px;
+}
 
 @media screen and (max-width: 1000px) {
   #Middle {
-    margin: 25px 0; }
+    margin: 25px 0;
+  }
+
   main {
     width: 100%;
     box-sizing: border-box;
     margin: 0;
-      margin-bottom: 25px;
-      margin-right: 0; }
+    margin-bottom: 25px;
+    margin-right: 0;
+  }
+
   #category-navbar {
     float: none;
     width: 100%;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+  }
+
   #Logo h1 {
     visibility: hidden;
     width: 0;
-    height: 0; }
+    height: 0;
+  }
+
   #write-button {
-    bottom: 80px; } }
+    bottom: 80px;
+  }
+}
