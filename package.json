@@ -30,6 +30,9 @@
     "pug": "^3.0.0"
   },
   "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.1.0",
+    "node-sass": "^5.0.0",
     "nodemon": "^2.0.7"
   }
 }

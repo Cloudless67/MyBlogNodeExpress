@@ -4,7 +4,7 @@ block post
   head
     title=post.title
     meta(property="og:title" content=post.title)
-    //meta(property="og:description" content=JSON.parse(post.body).ops[0].insert)
+    meta(property="og:description" content=post.body.substring(0, Math.min(post.body.indexOf('#') > 0 ? post.body.indexOf('#') : 100, 100)))
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-coy.min.css")
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/monokai-sublime.min.css")
     link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous")
