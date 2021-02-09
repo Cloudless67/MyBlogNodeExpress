@@ -16,7 +16,7 @@ block post
         h3.category= post.category
       h1= post.title
       time.BodyDateTime.text-gray= post.writtentime
-    
+    .hl
     section !{post.body}
 
     if(session.nickname)

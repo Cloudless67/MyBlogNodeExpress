@@ -17,7 +17,7 @@ body,
 input,
 select,
 textarea {
-  font-family: "맑은고딕", "sans-serif";
+  font-family: "맑은고딕", "Helvetica", "sans-serif";
 }
 
 header,
@@ -32,11 +32,17 @@ body {
 
 a {
   color: black;
-  text-decoration: solid;
+  text-decoration: none;
 
   &:hover {
     text-decoration: underline;
   }
+}
+
+.inline-code {
+  background-color: #eeeeee;
+  border-radius: 3px;
+  padding: 2px;
 }
 
 li {
