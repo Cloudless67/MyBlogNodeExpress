@@ -1,31 +1,22 @@
 @charset "UTF-8";
 h1 {
-  font-size: 1.8rem;
-  font-weight: bold;
   margin: 10px 0;
 }
 
 h2 {
-  font-size: 1.4rem;
-  font-weight: bold;
   margin: 10px 0;
 }
 
 h3 {
-  font-size: 1rem;
-  font-weight: bold;
   margin: 10px 0;
 }
 
 h4 {
-  font-size: 0.6rem;
-  font-weight: bold;
   margin: 10px 0;
 }
 
 small,
-time,
-h4 {
+time {
   font-size: 0.8rem;
 }
 
@@ -181,6 +172,7 @@ nav .list:last-child {
   grid-area: pwd_input;
 }
 .Login-div input[type=submit] {
+  font-size: 1.5rem;
   grid-area: submit;
   margin: 0 0.5rem;
 }
@@ -198,7 +190,7 @@ body,
 input,
 select,
 textarea {
-  font-family: "Helvetica", "맑은고딕", "sans-serif";
+  font-family: "맑은고딕", "Helvetica", "sans-serif";
 }
 
 header,
@@ -222,7 +214,7 @@ a:hover {
 .inline-code {
   background-color: #eeeeee;
   border-radius: 3px;
-  padding: 2px;
+  padding: 4px;
 }
 
 li {
@@ -312,6 +304,22 @@ main {
 }
 main .list small {
   float: right;
+}
+
+article section h1,
+article section h2,
+article section h3,
+article section h4 {
+  margin: 1.8rem 0;
+  line-height: 1.33;
+}
+article section h2::after,
+article section h3::after {
+  content: "";
+  display: block;
+  position: relative;
+  top: 0.5rem;
+  border-bottom: 1px solid lightgray;
 }
 
 #category-navbar {

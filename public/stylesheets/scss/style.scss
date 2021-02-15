@@ -42,7 +42,7 @@ a {
 .inline-code {
   background-color: #eeeeee;
   border-radius: 3px;
-  padding: 2px;
+  padding: 4px;
 }
 
 li {
@@ -124,6 +124,27 @@ main {
 
   .list small {
     float: right;
+  }
+}
+
+article section {
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 1.8rem 0;
+    line-height: 1.33;
+  }
+
+  h2,
+  h3 {
+    &::after {
+      content: "";
+      display: block;
+      position: relative;
+      top: 0.5rem;
+      border-bottom: 1px solid lightgray;
+    }
   }
 }
 
