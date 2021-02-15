@@ -299,7 +299,7 @@ main {
   min-width: 250px;
   width: 70%;
   box-sizing: border-box;
-  padding: 20px;
+  padding: 20px 40px;
   margin-right: 20px;
 }
 main .list small {
