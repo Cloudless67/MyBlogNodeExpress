@@ -1,20 +1,25 @@
 extends layout
 
 block post
-  form(method='post' action='update/process')
-    input(type="hidden" name="id" value=id)
-    label(for='category') 메뉴
-    select(name="category")
-      each category in categories
-        if(category.name === _category)
-          option(value=category.name selected)= category.name
-        else
-          option(value=category.name)= category.name
-    br
-    input#input-text(type='text' name='title' placeholder='제목' value = title)
-    br
+    form(method='post', action='update/process')
+        input(type='hidden', name='id', value=id)
+        label(for='category') 메뉴
+        select(name='category')
+            each category in categories
+                if (category.name === _category)
+                    option(value=category.name, selected)= category.name
+                else
+                    option(value=category.name)= category.name
+        br
+        input#input-text(
+            type='text',
+            name='title',
+            placeholder='제목',
+            value=title
+        )
+        br
 
-    textarea#input-markdown(name="body" value = body)=body
-    br
-    input(type='submit' value='글쓰기')
-  script(src="../scripts/write.js")
+        textarea#input-markdown(name='body', value=body)= body
+        br
+        input(type='submit', value='글쓰기')
+    script(src='../scripts/write.js')

@@ -1,8 +1,8 @@
-module.exports = function(req, res, next){
-  req.database.query("SELECT * FROM category;", (err, categories) => {
-    if (err) throw err;
+module.exports = function (req, res, next) {
+    req.database.query('SELECT * FROM category;', (err, categories) => {
+        if (err) throw err;
 
-    req.categories = categories;
-    next();
-  })
-}
+        req.categories = categories;
+        next();
+    });
+};

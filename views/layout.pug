@@ -1,22 +1,29 @@
 extends top-layout
 
 block content
-  main.bg-white
-    block post
-  aside#category-navbar
-    header
-        h1 게시판
-          if(session.nickname !== undefined)
-            button#category-settings
-              img#category-settings-icon(src="/images/gear.png", alt="gear.png")
+    main.bg-white
+        block post
+    aside#category-navbar
+        header
+            h1 게시판
+                if (session.nickname !== undefined)
+                    button#category-settings
+                        img#category-settings-icon(
+                            src='/images/gear.png',
+                            alt='gear.png'
+                        )
 
-    nav
-      each category in categories
-        p.list
-          a.category-list-text(href='/category/' + category.url)=' - ' + category.name
-        
-    p#category-add(style='visibility: hidden;')
-      input#category-add-text(type="text", name="category-name", placeholder='category name')
-      button#category-add-submit(type='button') 완료
+        nav
+            each category in categories
+                p.list
+                    a.category-list-text(href="/category/" + category.url)= " - " + category.name
 
-  script(src = '/scripts/category-settings.js')
+        p#category-add(style='visibility: hidden')
+            input#category-add-text(
+                type='text',
+                name='category-name',
+                placeholder='category name'
+            )
+            button#category-add-submit(type='button') 완료
+
+    script(src='/scripts/category-settings.js')

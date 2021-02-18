@@ -1,28 +1,28 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
+const postsPerIndex = 10;
 
-router.get("/:name", (req, res) => {
-  let category = req.params.name;
+router.get('/:name', (req, res) => {
+    const category = req.params.name;
+    const idx = req.query.idx || 0;
 
-  req.database.query(
-    `SELECT * FROM post join category on post.category=category.name WHERE url = '${category}'`,
-    (err, rows) => {
-      if (err) throw err;
-      req.database.query(
-        `SELECT * FROM category WHERE url = '${category}';`,
-        (err, cat) => {
-          if (err) throw err;
-
-          res.render("category", {
-            session: req.session,
-            posts: rows,
-            selectedCategory: cat[0].name,
-            categories: req.categories,
-          });
+    req.database.query(
+        `SELECT * FROM post join category on post.category=category.name WHERE url = '${category}'`,
+        (err, rows) => {
+            if (err) throw err;
+            res.render('category', {
+                session: req.session,
+                posts: rows.slice(
+                    idx * postsPerIndex,
+                    idx * postsPerIndex + postsPerIndex
+                ),
+                selectedCategory: rows[0].name,
+                categories: req.categories,
+                maxIndex: Math.ceil(rows.length / postsPerIndex),
+                currentIndex: idx,
+            });
         }
-      );
-    }
-  );
+    );
 });
 
 module.exports = router;

@@ -1,12 +1,11 @@
 extends top-layout
 
 block content
-  
-  form.Login-div.bg-white(action='login' method='post')
-    label(for='id') ID
-    input(type='text' name='id')
-    br
-    label(for='password') password
-    input(type='password' name='password')
-    
-    input(type='submit' value='로그인')
+    form.Login-div.bg-white(action='login', method='post')
+        label(for='id') ID
+        input(type='text', name='id')
+        br
+        label(for='password') password
+        input(type='password', name='password')
+
+        input(type='submit', value='로그인')

@@ -1,11 +1,11 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const logger = require('morgan');
 const session = require('express-session');
 const dotenv = require('dotenv');
-dotenv.config({path: './config.env'});
+dotenv.config({ path: './config.env' });
 const MySQLStore = require('express-mysql-session')(session);
 
 let indexRouter = require('./routes/index');
@@ -23,33 +23,40 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
- 
+
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
- 
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 // connect to mysql server
-let mysqlConnection = require('./middleware/mysql')(process.env.DB_HOST, process.env.DB_USER, process.env.DB_PWD, process.env.DB_NAME);
+let mysqlConnection = require('./middleware/mysql')(
+    process.env.DB_HOST,
+    process.env.DB_USER,
+    process.env.DB_PWD,
+    process.env.DB_NAME
+);
 app.use((req, res, next) => {
-  req.database = mysqlConnection;
-  next();
+    req.database = mysqlConnection;
+    next();
 });
 
 // create session store
 let sessionStore = new MySQLStore({}, mysqlConnection);
 
-app.use(session({
-  key: 'LoginSession',
-  secret: 'Secret',
-  store: sessionStore,
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    maxAge: 24*60*60*1000
-  }
-}))
+app.use(
+    session({
+        key: 'LoginSession',
+        secret: 'Secret',
+        store: sessionStore,
+        resave: false,
+        saveUninitialized: true,
+        cookie: {
+            maxAge: 24 * 60 * 60 * 1000,
+        },
+    })
+);
 
 // get categories
 app.use(require('./middleware/navigationbar'));
@@ -60,19 +67,19 @@ app.use('/api', apiRouter);
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use(function (req, res, next) {
+    next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;

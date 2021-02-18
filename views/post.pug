@@ -1,55 +1,101 @@
 extends layout
 
 block post
-  head
-    title=post.title
-    meta(property="og:title" content=post.title)
-    meta(property="og:description" content=post.body.substring(0, Math.min(post.body.indexOf('#') > 0 ? post.body.indexOf('#') : 100, 100)))
-    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-coy.min.css")
-    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/monokai-sublime.min.css")
-    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous")
-    script(src="../scripts/post.js")
+    head
+        title= post.title
+        meta(property='og:title', content=post.title)
+        meta(
+            property='og:description',
+            content=post.body.substring(0, Math.min(post.body.indexOf("#") > 0 ? post.body.indexOf("#") : 100, 100))
+        )
+        link(
+            rel='stylesheet',
+            href='https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-coy.min.css'
+        )
+        link(
+            rel='stylesheet',
+            href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/monokai-sublime.min.css'
+        )
+        link(
+            rel='stylesheet',
+            href='https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css',
+            integrity='sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X',
+            crossorigin='anonymous'
+        )
+        script(src='../scripts/post.js')
 
-  article
-    header
-      a(href = '/category/' + categories.find(e=> e.name === post.category).url)
-        h3.category= post.category
-      h1= post.title
-      time.BodyDateTime.text-gray= post.writtentime
+    article
+        header
+            a(
+                href="/category/" + categories.find((e) => e.name === post.category).url
+            )
+                h3.category= post.category
+            h1= post.title
+            time.BodyDateTime.text-gray= post.writtentime
+        .hl
+        section !{post.body}
+
+        if (session.nickname)
+            .deletenedit
+                form.delete-container(action='update', method='post')
+                    input.delete-text(type='hidden', name='id', value=post.id)
+                    input(type='submit', value='수정')
+                form.delete-container(action='delete', method='post')
+                    input.delete-text(type='hidden', name='id', value=post.id)
+                    input(type='submit', value='삭제')
+
     .hl
-    section !{post.body}
+    section.Replies
+        h3 댓글
+        each reply, index in replies
+            .Reply
+                h4.reply-nickname= reply.nickname
+                p.ReplyBody.bg-white.pre-wrap= reply.body
+                small.ReplyDateTime= reply.writtentime
+                button.reply-delete-btn.text-white(
+                    onclick=`DeleteReplyClicked(${index})`,
+                    type='button',
+                    value=post.id
+                ) x
+                form.delete-reply-form(
+                    id=`reply-form-${index}`,
+                    action='delete-reply',
+                    method='post',
+                    style='visibility: hidden; height: 0; width: 20%'
+                )
+                    input(type='hidden', name='id', value=reply.id)
+                    input(type='hidden', name='postId', value=post.id)
+                    if (session.nickname)
+                        input.post-delete-btn(type='submit', value='삭제')
+                    else
+                        input.reply-pwd(
+                            type='password',
+                            name='pwd',
+                            required,
+                            placeholder='비밀번호'
+                        )
+                        input.post-delete-btn(type='submit', value='삭제')
 
-    if(session.nickname)
-      .deletenedit
-        form.delete-container(action = 'update' method='post')
-          input.delete-text(type='hidden' name='id' value=post.id)
-          input(type='submit' value='수정')
-        form.delete-container(action = 'delete' method='post')
-          input.delete-text(type='hidden' name='id' value=post.id)
-          input(type='submit' value='삭제')
-
-  .hl
-  section.Replies
-    h3 댓글
-    each reply, index in replies
-      .Reply
-        h4.reply-nickname=reply.nickname
-        p.ReplyBody.bg-white.pre-wrap=reply.body
-        small.ReplyDateTime=reply.writtentime
-        button.reply-delete-btn.text-white(onclick=`DeleteReplyClicked(${index})` type='button' value=post.id) x
-        form.delete-reply-form(id=`reply-form-${index}` action='delete-reply' method='post' style='visibility: hidden; height: 0; width: 20%;')
-          input(type='hidden' name='id' value=reply.id)
-          input(type='hidden' name='postId' value=post.id)
-          if(session.nickname)
-            input.post-delete-btn(type='submit' value='삭제')
-          else
-            input.reply-pwd(type='password' name='pwd' required placeholder='비밀번호')
-            input.post-delete-btn(type='submit' value='삭제')
-
-    form.write-reply(action = 'reply' method='post')
-      input(type='hidden' name='id' value=post.id)
-      input.write-reply-nickname(type="text" name="nickname" placeholder="이름" maxlength=10)
-      input.write-reply-password(type="password" name="pwd" required placeholder="비밀번호" maxlength=6)
-      textarea.write-reply-text(name="reply_body" required placeholder="댓글을 입력해주세요" rows="5" maxlength=1024)
-      input.write-reply-submit(type='submit' value='입력')
-
+        form.write-reply(action='reply', method='post')
+            input(type='hidden', name='id', value=post.id)
+            input.write-reply-nickname(
+                type='text',
+                name='nickname',
+                placeholder='이름',
+                maxlength=10
+            )
+            input.write-reply-password(
+                type='password',
+                name='pwd',
+                required,
+                placeholder='비밀번호',
+                maxlength=6
+            )
+            textarea.write-reply-text(
+                name='reply_body',
+                required,
+                placeholder='댓글을 입력해주세요',
+                rows='5',
+                maxlength=1024
+            )
+            input.write-reply-submit(type='submit', value='입력')

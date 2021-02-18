@@ -1,81 +1,81 @@
 $reply-background: #b2c7d9;
 
 .BodyDateTime {
-  display: block;
-  text-align: right;
+    display: block;
+    text-align: right;
 }
 
 #editor-container {
-  font-size: 1rem;
+    font-size: 1rem;
 }
 
 .deletenedit {
-  display: flex;
-  justify-content: flex-end;
-  margin: 10px 0;
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0;
 
-  form {
-    padding: 0 10px;
-  }
+    form {
+        padding: 0 10px;
+    }
 }
 
 .Reply {
-  background-color: $reply-background;
-  border-radius: 4px;
-  padding: 0.3rem;
-  margin-bottom: 0.3rem;
+    background-color: $reply-background;
+    border-radius: 4px;
+    padding: 0.3rem;
+    margin-bottom: 0.3rem;
 }
 
 .ReplyBody {
-  border-radius: 4px;
-  max-width: 70%;
-  padding: 0.3rem;
-  display: inline-block;
-  margin: 0 {
-    right: 4px;
-  }
+    border-radius: 4px;
+    max-width: 70%;
+    padding: 0.3rem;
+    display: inline-block;
+    margin: 0 {
+        right: 4px;
+    }
 }
 
 .reply-delete-btn {
-  border-radius: 4px;
-  background-color: red;
-  padding: 0 4px;
-  margin: 0 4px;
-  border: none {
-    radius: 4px;
-  }
+    border-radius: 4px;
+    background-color: red;
+    padding: 0 4px;
+    margin: 0 4px;
+    border: none {
+        radius: 4px;
+    }
 }
 
 .write-reply {
-  display: grid;
-  grid-template-columns: auto auto 80px;
-  grid-template-areas:
-    "name pwd submit"
-    "body body submit";
+    display: grid;
+    grid-template-columns: auto auto 80px;
+    grid-template-areas:
+        'name pwd submit'
+        'body body submit';
 
-  .write-reply-nickname {
-    grid-area: name;
-  }
+    .write-reply-nickname {
+        grid-area: name;
+    }
 
-  .write-reply-password {
-    grid-area: pwd;
-  }
+    .write-reply-password {
+        grid-area: pwd;
+    }
 
-  .write-reply-text {
-    grid-area: body;
-  }
+    .write-reply-text {
+        grid-area: body;
+    }
 
-  .write-reply-submit {
-    grid-area: submit;
-    margin-left: 0.5rem;
-  }
+    .write-reply-submit {
+        grid-area: submit;
+        margin-left: 0.5rem;
+    }
 }
 
 @media screen and (max-width: 1000px) {
-  .write-reply {
-    width: 100%;
-    padding: 0;
-    font-size: 1rem;
-    grid-template-columns: 42% 42% 16%;
-  }
+    .write-reply {
+        width: 100%;
+        padding: 0;
+        font-size: 1rem;
+        grid-template-columns: 42% 42% 16%;
+    }
 }

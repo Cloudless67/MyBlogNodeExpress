@@ -1,39 +1,46 @@
 doctype html
 html
-  head
-    if(post === undefined)
-      title Cloudless의 블로그
-      meta(property="og:title" content="Cloudless의 블로그")
-      meta(property="og:description" content="개발 관련 및 잡다한 글을 위한 블로그입니다.")
+    head
+        if (post === undefined)
+            title Cloudless의 블로그
+            meta(property='og:title', content='Cloudless의 블로그')
+            meta(
+                property='og:description',
+                content='개발 관련 및 잡다한 글을 위한 블로그입니다.'
+            )
 
-    meta(name="viewport" content="width=device-width, initial-scale=1")
-    meta(property="og:url" content="https://www.cloudless.blog")
-    meta(property="og:type" content="website")
-    meta(property="og:image" content="/images/favicon.ico")
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(property='og:url', content='https://www.cloudless.blog')
+        meta(property='og:type', content='website')
+        meta(property='og:image', content='/images/favicon.ico')
 
-    link(rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon")
-    link(rel="icon" href="/images/favicon.ico" type="image/x-icon")
-    link(rel='stylesheet', href='/stylesheets/css/style.css')
+        link(
+            rel='shortcut icon',
+            href='/images/favicon.ico',
+            type='image/x-icon'
+        )
+        link(rel='icon', href='/images/favicon.ico', type='image/x-icon')
+        link(rel='stylesheet', href='/stylesheets/css/style.css')
 
-  body
-    #Element-Wrapper
-      if(session)
-        header#Top
-          a#Logo(href = '/')
-            img(src='/images/Logo_White.png')
-            h1.text-white Cloudless' Blog
-          h2#Login
-            if(session.nickname !== undefined)
-              a.text-white(href='/logout') 로그아웃
-            else
-              a.text-white(href='/login') 로그인
+    body
+        #Element-Wrapper
+            if (session)
+                header#Top
+                    a#Logo(href='/')
+                        img(src='/images/Logo_White.png')
+                        h1.text-white Cloudless' Blog
+                    h2#Login
+                        if (session.nickname !== undefined)
+                            a.text-white(href='/logout') 로그아웃
+                        else
+                            a.text-white(href='/login') 로그인
 
-      #Middle
-        block content
+            #Middle
+                block content
 
-      footer#Bottom
-        small cloudless67@cloudless.blog | &copy; 2021 by Cloudless
-    
-    if(session && session.nickname !== undefined)
-      #write-button
-        a.text-white(href='/post/write') 글쓰기
+            footer#Bottom
+                small cloudless67@cloudless.blog | &copy; 2021 by Cloudless
+
+        if (session && session.nickname !== undefined)
+            #write-button
+                a.text-white(href='/post/write') 글쓰기

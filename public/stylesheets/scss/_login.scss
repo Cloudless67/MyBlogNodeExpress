@@ -1,55 +1,55 @@
 @mixin grid-item($grid-area) {
-  width: 100%;
-  grid-area: $grid-area;
+    width: 100%;
+    grid-area: $grid-area;
 }
 
 .Login-div {
-  max-width: 800px;
-  width: 70%;
-  padding: 2rem;
-  font-size: 1.5rem;
+    max-width: 800px;
+    width: 70%;
+    padding: 2rem;
+    font-size: 1.5rem;
 
-  display: grid;
-  grid-gap: 0.5rem;
-  grid-template-columns: 10rem auto 10rem;
-  grid-template-areas:
-    "id_text id_input submit"
-    "pwd_text pwd_input submit";
+    display: grid;
+    grid-gap: 0.5rem;
+    grid-template-columns: 10rem auto 10rem;
+    grid-template-areas:
+        'id_text id_input submit'
+        'pwd_text pwd_input submit';
 
-  label {
-    vertical-align: center;
-    &[for="id"] {
-      @include grid-item(id_text);
+    label {
+        vertical-align: center;
+        &[for='id'] {
+            @include grid-item(id_text);
+        }
+
+        &[for='password'] {
+            @include grid-item(pwd_text);
+        }
     }
 
-    &[for="password"] {
-      @include grid-item(pwd_text);
-    }
-  }
+    input {
+        &[type='text'] {
+            @include grid-item(id_input);
+        }
 
-  input {
-    &[type="text"] {
-      @include grid-item(id_input);
-    }
+        &[type='password'] {
+            @include grid-item(pwd_input);
+        }
 
-    &[type="password"] {
-      @include grid-item(pwd_input);
+        &[type='submit'] {
+            font-size: 1.5rem;
+            grid-area: submit;
+            margin: 0 0.5rem;
+        }
     }
-
-    &[type="submit"] {
-      font-size: 1.5rem;
-      grid-area: submit;
-      margin: 0 0.5rem;
-    }
-  }
 }
 
 @media screen and (max-width: 1000px) {
-  .Login-div {
-    width: 100%;
-    max-width: 600px;
-    padding: 2rem;
-    font-size: 1rem;
-    grid-template-columns: 20% 50% 30%;
-  }
+    .Login-div {
+        width: 100%;
+        max-width: 600px;
+        padding: 2rem;
+        font-size: 1rem;
+        grid-template-columns: 20% 50% 30%;
+    }
 }

@@ -371,6 +371,23 @@ article section h3::after {
   height: 16px;
 }
 
+.indexes {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+}
+.indexes a {
+  border-right: 1px solid black;
+  padding: 0 10px;
+}
+.indexes a:last-child {
+  border: none;
+}
+.indexes .selected {
+  background-color: #eee;
+  color: #ff3333;
+}
+
 @media screen and (max-width: 1000px) {
   #Middle {
     margin: 25px 0;

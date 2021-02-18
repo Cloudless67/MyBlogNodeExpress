@@ -1,82 +1,82 @@
 // Headers
 // h1 to h4
 $headers: (
-  1: 1.8rem,
-  2: 1.4rem,
-  3: 1rem,
-  4: 0.8rem,
+    1: 1.8rem,
+    2: 1.4rem,
+    3: 1rem,
+    4: 0.8rem,
 );
 
 @each $i, $fs in $headers {
-  h#{$i} {
-    margin: 10px 0;
-  }
+    h#{$i} {
+        margin: 10px 0;
+    }
 }
 
 small,
 time {
-  font-size: 0.8rem;
+    font-size: 0.8rem;
 }
 
 // Horizontal Line
 .hl {
-  height: 1px;
-  width: 100%;
-  background-color: lightgray;
-  margin: 10px 0;
+    height: 1px;
+    width: 100%;
+    background-color: lightgray;
+    margin: 10px 0;
 }
 
 // Visibilities
 .hidden {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 // List with lines
 nav {
-  .list {
-    padding: 10px 0;
-    border-bottom: solid 1px lightgray;
-    margin: 0;
+    .list {
+        padding: 10px 0;
+        border-bottom: solid 1px lightgray;
+        margin: 0;
 
-    &:last-child {
-      border-bottom: none;
+        &:last-child {
+            border-bottom: none;
+        }
     }
-  }
 }
 
 // Text Colors
 .text-white {
-  color: white;
+    color: white;
 }
 
 .text-gray {
-  color: gray;
+    color: gray;
 }
 
 .text-black {
-  color: black;
+    color: black;
 }
 
 // Background Colors
 .bg-white {
-  background-color: white;
+    background-color: white;
 }
 
 // Word Wrap
 .pre-wrap {
-  white-space: pre-wrap;
+    white-space: pre-wrap;
 }
 
 // Bold
 .bold {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 // Zero margin
 .m0 {
-  margin: 0;
+    margin: 0;
 }
 
 .m1 {
-  margin: 1em;
+    margin: 1em;
 }
