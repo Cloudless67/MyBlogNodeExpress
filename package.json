@@ -10,7 +10,7 @@
         "dev": "nodemon bin/www"
     },
     "dependencies": {
-        "aws-sdk": "^2.843.0",
+        "aws-sdk": "^2.847.0",
         "bcrypt": "^5.0.0",
         "body-parser": "^1.19.0",
         "cookie-parser": "~1.4.4",
@@ -31,10 +31,10 @@
         "pug": "^3.0.0"
     },
     "devDependencies": {
-        "@prettier/plugin-pug": "^1.13.3",
+        "@prettier/plugin-pug": "^1.13.4",
         "gulp": "^4.0.2",
         "gulp-sass": "^4.1.0",
         "prettier": "^2.2.1",
-        "sass": "^1.32.7"
+        "sass": "^1.32.8"
     }
 }

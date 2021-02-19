@@ -40,6 +40,29 @@ router.get('/logout', (req, res) => {
     });
 });
 
+router.get('/category/:name', (req, res) => {
+    const category = req.params.name;
+    const idx = req.query.idx || 0;
+
+    req.database.query(
+        `SELECT * FROM post join category on post.category=category.name WHERE url = '${category}'`,
+        (err, rows) => {
+            if (err) throw err;
+            res.render('category', {
+                session: req.session,
+                posts: rows.slice(
+                    idx * postsPerIndex,
+                    idx * postsPerIndex + postsPerIndex
+                ),
+                selectedCategory: rows[0].name,
+                categories: req.categories,
+                maxIndex: Math.ceil(rows.length / postsPerIndex),
+                currentIndex: idx,
+            });
+        }
+    );
+});
+
 router.get('/', (req, res) => {
     const idx = req.query.idx || 0;
     req.database.query('SELECT * FROM post;', (err, rows) => {

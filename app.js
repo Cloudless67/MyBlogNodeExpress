@@ -11,7 +11,6 @@ const MySQLStore = require('express-mysql-session')(session);
 let indexRouter = require('./routes/index');
 let apiRouter = require('./routes/api');
 let postRouter = require('./routes/post');
-let categoryRouter = require('./routes/category');
 
 const app = express();
 
@@ -62,7 +61,6 @@ app.use(
 app.use(require('./middleware/navigationbar'));
 
 app.use('/post', postRouter);
-app.use('/category', categoryRouter);
 app.use('/api', apiRouter);
 app.use('/', indexRouter);
 
