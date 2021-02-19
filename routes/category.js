@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const postsPerIndex = 10;
+const postsPerIndex = 3;
 
 router.get('/:name', (req, res) => {
     const category = req.params.name;

@@ -30,6 +30,10 @@ body {
     background: lightgray;
 }
 
+p {
+    overflow-wrap: break-word;
+}
+
 a {
     color: black;
     text-decoration: none;
