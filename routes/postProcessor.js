@@ -29,22 +29,17 @@ loadLanguages([
     'sql',
 ]);
 
-marked.setOptions({
-    renderer: new marked.Renderer(),
-    pedantic: false,
-    gfm: true,
-    breaks: true,
-    sanitize: false,
-    smartLists: true,
-    smartypants: false,
-    xhtml: false,
-});
-
 const renderer = {
     // Override code block
     code(code, infostring) {
         if (infostring === 'Math') {
-            return katex.renderToString(code, { throwOnError: false });
+            return `<span class="katex-display">
+            ${katex.renderToString(code, {
+                displayMode: true,
+                output: 'html',
+                throwOnError: false,
+            })}
+            </span>`;
         } else {
             try {
                 return `<pre class = "language-${infostring}"><code class = "language-${infostring}">${Prism.highlight(
