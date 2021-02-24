@@ -3,10 +3,13 @@ html
     head
         if (post === undefined)
             title Cloudless의 블로그
-            meta(property='og:title', content='Cloudless의 블로그')
+            meta(name='title', content='Cloudless의 블로그')
+            meta(name='description', content='개발 관련 및 잡다한 글을 위한 블로그입니다.')
+        else
+            meta(name='title', content=post.title)
             meta(
-                property='og:description',
-                content='개발 관련 및 잡다한 글을 위한 블로그입니다.'
+                name='description',
+                content=post.body.substring(0, Math.min(post.body.indexOf("#") > 0 ? post.body.indexOf("#") : 100, 100))
             )
 
         meta(name='viewport', content='width=device-width, initial-scale=1')

@@ -54,7 +54,7 @@ router.get('/category/:name', (req, res) => {
                     idx * postsPerIndex,
                     idx * postsPerIndex + postsPerIndex
                 ),
-                selectedCategory: rows[0].name,
+                selectedCategory: category,
                 categories: req.categories,
                 maxIndex: Math.ceil(rows.length / postsPerIndex),
                 currentIndex: idx,
@@ -68,7 +68,6 @@ router.get('/', (req, res) => {
     req.database.query('SELECT * FROM post;', (err, rows) => {
         if (err) throw err;
 
-        console.log(rows);
         res.render('category', {
             session: req.session,
             posts: rows.slice(
