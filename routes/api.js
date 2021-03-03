@@ -52,16 +52,21 @@ router.delete('/image/:name(*)', (req, res) => {
     }
 });
 
-router.post('/category/:name', (req, res) => {
+router.post('/category/:name', async (req, res) => {
+    const Category = require('../models/category');
+    const name = req.params.name;
+    const url = encodeURI(req.params.name);
     if (CheckAuth(req, res)) {
-        let name = req.database.escape(req.params.name);
-        req.database.query(
-            'INSERT INTO category ' + `VALUES (${name}, ${name});`,
-            (err, result) => {
-                if (err) throw err;
-                res.end(); //status(200).redirect('/');
-            }
-        );
+        const category = new Category({ name });
+        try {
+            await category.save();
+            res.status(200).json({ name, url });
+        } catch (e) {
+            console.log(e);
+            res.status(409).json(
+                JSON.stringify({ msg: 'Duplicate category name' })
+            );
+        }
     }
 });
 

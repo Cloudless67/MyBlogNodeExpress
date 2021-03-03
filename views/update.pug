@@ -1,12 +1,12 @@
 extends layout
 
 block post
-    form(method='post', action='update/process')
+    form(method='post', action='/post/update')
         input(type='hidden', name='id', value=id)
         label(for='category') 메뉴
         select(name='category')
             each category in categories
-                if (category.name === _category)
+                if (category.name === post.category)
                     option(value=category.name, selected)= category.name
                 else
                     option(value=category.name)= category.name
@@ -15,11 +15,26 @@ block post
             type='text',
             name='title',
             placeholder='제목',
-            value=title
+            value=post.title
+        )
+        br
+        input#input-text(
+            type='text',
+            name='url',
+            placeholder='URL',
+            value=post.url
         )
         br
 
-        textarea#input-markdown(name='body', value=body)= body
+        textarea#input-markdown(name='body')= post.body
+        br
+        input#input-text(
+            type='text',
+            name='tags',
+            placeholder='tags',
+            value=post.tags.join(",")
+        )
+        br
         br
         input(type='submit', value='글쓰기')
     script(src='../scripts/write.js')

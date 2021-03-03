@@ -1,11 +1,12 @@
 doctype html
 html
     head
-        if (post === undefined)
+        if (!post)
             title Cloudless의 블로그
             meta(name='title', content='Cloudless의 블로그')
             meta(name='description', content='개발 관련 및 잡다한 글을 위한 블로그입니다.')
         else
+            title= post.title
             meta(name='title', content=post.title)
             meta(
                 name='description',

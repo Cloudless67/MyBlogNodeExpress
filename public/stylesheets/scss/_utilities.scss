@@ -1,7 +1,7 @@
 // Headers
 // h1 to h4
 $headers: (
-    1: 1.8rem,
+    1: 2rem,
     2: 1.4rem,
     3: 1rem,
     4: 0.8rem,
@@ -9,6 +9,7 @@ $headers: (
 
 @each $i, $fs in $headers {
     h#{$i} {
+        font-size: $fs;
         margin: 10px 0;
     }
 }

@@ -27,7 +27,7 @@ body {
 }
 
 body {
-    background: lightgray;
+    background: #eee;
 }
 
 p {
@@ -62,7 +62,7 @@ em {
 }
 
 input[type='submit'] {
-    background-color: $primary-color;
+    background-color: $primary-light;
     border: none;
     color: white;
     padding: 4px;
@@ -175,7 +175,7 @@ article section {
 
 #write-button {
     position: fixed;
-    background-color: $primary-color;
+    background-color: $primary-light;
     padding: 2px;
     right: 20px;
     bottom: 80px;

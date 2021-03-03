@@ -1,8 +1,46 @@
 $reply-background: #b2c7d9;
 
+$primary-color: #01579b;
+$primary-light: #4f83cc;
+$primary-dark: #002f6c;
+
+$secondary-color: #c2185b;
+$secondary-light: #fa5788;
+$secondary-dark: #8c0032;
+
+.category {
+    display: inline-block;
+    margin: 0;
+}
+
+.title {
+    display: inline-block;
+}
+
 .BodyDateTime {
-    display: block;
-    text-align: right;
+    display: inline;
+}
+
+.tags {
+    display: flex;
+    flex-direction: row;
+    float: right;
+
+    .tag {
+        margin-left: 8px;
+        font-size: 0.8em;
+        background-color: $primary-light;
+        color: white;
+        border: solid $primary-light 1px;
+        border-radius: 100px;
+        padding: 5px 10px;
+
+        &:hover {
+            text-decoration: none;
+            background-color: white;
+            color: $primary-light;
+        }
+    }
 }
 
 #editor-container {

@@ -21,32 +21,35 @@ block post
 
     article
         header
-            a(
-                href="/category/" + categories.find((e) => e.name === post.category).url
-            )
+            a(href=`/category/${post.category}`)
                 h3.category= post.category
-            h1= post.title
-            time.BodyDateTime.text-gray= post.writtentime
+            .tags
+                each tag in post.tags
+                    a.tag(href=`/tag/${encodeURI(tag)}`)= tag
+            br
+            h1.title= post.title
+            br
+            time.BodyDateTime.text-gray= post.formattedTime
         .hl
-        section !{post.body}
+        section !{post.formattedBody}
 
         if (session.nickname)
             .deletenedit
-                form.delete-container(action='update', method='post')
+                form.delete-container(action=`update/${post.id}`, method='get')
                     input.delete-text(type='hidden', name='id', value=post.id)
                     input(type='submit', value='수정')
                 form.delete-container(action='delete', method='post')
                     input.delete-text(type='hidden', name='id', value=post.id)
                     input(type='submit', value='삭제')
 
-    .hl
+    hr
     section.Replies
         h3 댓글
-        each reply, index in replies
+        each reply, index in post.replies
             .Reply
                 h4.reply-nickname= reply.nickname
                 p.ReplyBody.bg-white.pre-wrap= reply.body
-                small.ReplyDateTime= reply.writtentime
+                small.ReplyDateTime= reply.formattedTime
                 button.reply-delete-btn.text-white(
                     onclick=`DeleteReplyClicked(${index})`,
                     type='button',
@@ -59,7 +62,7 @@ block post
                     style='display: none; width: 20%'
                 )
                     input(type='hidden', name='id', value=reply.id)
-                    input(type='hidden', name='postId', value=post.id)
+                    input(type='hidden', name='url', value=post.url)
                     if (session.nickname)
                         input.post-delete-btn(type='submit', value='삭제')
                     else
@@ -72,7 +75,7 @@ block post
                         input.post-delete-btn(type='submit', value='삭제')
 
         form.write-reply(action='reply', method='post')
-            input(type='hidden', name='id', value=post.id)
+            input(type='hidden', name='url', value=post.url)
             input.write-reply-nickname(
                 type='text',
                 name='nickname',
@@ -87,7 +90,7 @@ block post
                 maxlength=6
             )
             textarea.write-reply-text(
-                name='reply_body',
+                name='body',
                 required,
                 placeholder='댓글을 입력해주세요',
                 rows='5',

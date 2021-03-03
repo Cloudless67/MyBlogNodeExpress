@@ -16,7 +16,9 @@ block content
         nav
             each category in categories
                 p.list
-                    a.category-list-text(href="/category/" + category.url)= " - " + category.name
+                    a.category-list-text(
+                        href="/category/" + encodeURI(category.name)
+                    )= " - " + category.name
 
         p#category-add(style='display: none')
             input#category-add-text(

@@ -1,8 +1,10 @@
-module.exports = function (req, res, next) {
-    req.database.query('SELECT * FROM category;', (err, categories) => {
-        if (err) throw err;
+const Category = require('../models/category');
 
-        req.categories = categories;
-        next();
-    });
+module.exports = async function (req, res, next) {
+    Category.find()
+        .then((categories) => {
+            req.categories = categories;
+            next();
+        })
+        .catch((err) => console.error(err));
 };

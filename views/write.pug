@@ -9,8 +9,13 @@ block post
         br
         input#input-text(type='text', name='title', placeholder='제목')
         br
+        input#input-text(type='text', name='url', placeholder='URL')
+        br
 
         textarea#input-markdown(name='body')
+        br
+        input#input-text(type='text', name='tags', placeholder='tags')
+        br
         br
         input(type='submit', value='글쓰기')
     script(src='../scripts/write.js')

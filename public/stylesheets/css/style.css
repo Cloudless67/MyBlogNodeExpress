@@ -1,17 +1,21 @@
 @charset "UTF-8";
 h1 {
+  font-size: 2rem;
   margin: 10px 0;
 }
 
 h2 {
+  font-size: 1.4rem;
   margin: 10px 0;
 }
 
 h3 {
+  font-size: 1rem;
   margin: 10px 0;
 }
 
 h4 {
+  font-size: 0.8rem;
   margin: 10px 0;
 }
 
@@ -72,9 +76,37 @@ nav .list:last-child {
   margin: 1em;
 }
 
+.category {
+  display: inline-block;
+  margin: 0;
+}
+
+.title {
+  display: inline-block;
+}
+
 .BodyDateTime {
-  display: block;
-  text-align: right;
+  display: inline;
+}
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  float: right;
+}
+.tags .tag {
+  margin-left: 8px;
+  font-size: 0.8em;
+  background-color: #4f83cc;
+  color: white;
+  border: solid #4f83cc 1px;
+  border-radius: 100px;
+  padding: 5px 10px;
+}
+.tags .tag:hover {
+  text-decoration: none;
+  background-color: white;
+  color: #4f83cc;
 }
 
 #editor-container {
@@ -200,7 +232,7 @@ body {
 }
 
 body {
-  background: lightgray;
+  background: #eee;
 }
 
 p {
@@ -234,7 +266,7 @@ em {
 }
 
 input[type=submit] {
-  background-color: #01579b;
+  background-color: #4f83cc;
   border: none;
   color: white;
   padding: 4px;
@@ -351,7 +383,7 @@ article section h3::after {
 
 #write-button {
   position: fixed;
-  background-color: #01579b;
+  background-color: #4f83cc;
   padding: 2px;
   right: 20px;
   bottom: 80px;

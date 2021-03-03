@@ -17,6 +17,14 @@ document.getElementById('category-add-submit').onclick = () => {
     xhr.onload = () => {
         if (xhr.status !== 200) {
             alert('Category add failed.');
+        } else {
+            const res = JSON.parse(xhr.response);
+            const newCategory = document.createElement('p');
+            const nav = document.querySelector('#category-navbar nav');
+
+            newCategory.className = 'list';
+            newCategory.innerHTML = `<a class="category-list-text" href="/category/${res.url}"> - ${res.name}</a>`;
+            nav.appendChild(newCategory);
         }
     };
     xhr.send();
