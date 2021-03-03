@@ -32,13 +32,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Set up default mongoose connection
-const databaseURL = `mongodb+srv://${process.env.DB_USER}:${encodeURI(
-    process.env.DB_PWD
-)}@${
-    process.env.DB_NAME
-}.q6hi4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-console.log(databaseURL);
-mongoose.connect(databaseURL, {
+mongoose.connect(process.env.DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -59,7 +53,7 @@ app.use(
         key: 'LoginSession',
         secret: 'Secret',
         store: MongoStore.create({
-            mongoUrl: databaseURL,
+            mongoUrl: process.env.DB_URL,
         }),
         resave: false,
         saveUninitialized: true,
