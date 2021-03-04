@@ -48,7 +48,7 @@ const renderer = {
                     infostring
                 )}</code></pre>`;
             } catch (err) {
-                console.error(`unidentified language "${infostring}"`);
+                return false;
             }
         }
     },
@@ -110,12 +110,13 @@ const tokenizer = {
             /^ {0,3}(`{3,}|\${2,}(?=[^`\n]*\n)|~{3,})([^\n]*)\n(?:|([\s\S]*?)\n)(?: {0,3}\1[~`\$]* *(?:\n+|$)|$)/
         );
         if (cap) {
+            console.log(cap[1]);
             return {
                 type: 'code',
                 raw: cap[0],
                 codeBlockStyle: 'indented',
                 // for $$ ... $$ block, set language as Math
-                lang: cap[1] === '```' ? cap[2].trim() : 'Math',
+                lang: cap[1] === '$$' ? 'Math' : cap[2].trim(),
                 text: cap[3],
             };
         }
