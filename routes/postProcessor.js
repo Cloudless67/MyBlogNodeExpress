@@ -64,6 +64,22 @@ const renderer = {
             return `<code class = "inline-code">${code}</code>`;
         }
     },
+    listitem(text, task, checked) {
+        if (task) {
+            return `<li class="task-list-item">${text}</li>`;
+        } else {
+            return '<li>' + text + '</li>\n';
+        }
+    },
+    checkbox(checked) {
+        return (
+            '<input ' +
+            (checked ? 'checked="" ' : '') +
+            'type="checkbox"' +
+            (this.options.xhtml ? ' /' : '') +
+            '> '
+        );
+    },
 };
 
 const tokenizer = {
@@ -110,7 +126,6 @@ const tokenizer = {
             /^ {0,3}(`{3,}|\${2,}(?=[^`\n]*\n)|~{3,})([^\n]*)\n(?:|([\s\S]*?)\n)(?: {0,3}\1[~`\$]* *(?:\n+|$)|$)/
         );
         if (cap) {
-            console.log(cap[1]);
             return {
                 type: 'code',
                 raw: cap[0],

@@ -31,7 +31,7 @@ block post
             br
             time.BodyDateTime.text-gray= post.formattedTime
         .hl
-        section !{post.formattedBody}
+        section.markdown-body !{post.formattedBody}
 
         if (session.nickname)
             .deletenedit

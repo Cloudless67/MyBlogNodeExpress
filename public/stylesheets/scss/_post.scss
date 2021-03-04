@@ -47,6 +47,14 @@ $secondary-dark: #8c0032;
     font-size: 1rem;
 }
 
+.task-list-item {
+    list-style: none;
+
+    input[type='checkbox'] {
+        margin-left: -1.3rem;
+    }
+}
+
 .deletenedit {
     display: flex;
     justify-content: flex-end;

@@ -113,6 +113,13 @@ nav .list:last-child {
   font-size: 1rem;
 }
 
+.task-list-item {
+  list-style: none;
+}
+.task-list-item input[type=checkbox] {
+  margin-left: -1.3rem;
+}
+
 .deletenedit {
   display: flex;
   justify-content: flex-end;
@@ -251,10 +258,6 @@ a:hover {
   background-color: #eeeeee;
   border-radius: 3px;
   padding: 4px;
-}
-
-li {
-  list-style-type: none;
 }
 
 strong {
