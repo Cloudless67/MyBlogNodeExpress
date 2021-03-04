@@ -5,17 +5,17 @@ h1 {
 }
 
 h2 {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   margin: 10px 0;
 }
 
 h3 {
-  font-size: 1rem;
+  font-size: 1.4rem;
   margin: 10px 0;
 }
 
 h4 {
-  font-size: 0.8rem;
+  font-size: 1rem;
   margin: 10px 0;
 }
 
@@ -111,6 +111,10 @@ nav .list:last-child {
 
 #editor-container {
   font-size: 1rem;
+}
+
+.markdown-body a {
+  color: #4f83cc;
 }
 
 .task-list-item {

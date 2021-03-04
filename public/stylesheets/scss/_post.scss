@@ -47,6 +47,12 @@ $secondary-dark: #8c0032;
     font-size: 1rem;
 }
 
+.markdown-body {
+    a {
+        color: $primary-light;
+    }
+}
+
 .task-list-item {
     list-style: none;
 

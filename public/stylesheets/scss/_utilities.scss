@@ -2,9 +2,9 @@
 // h1 to h4
 $headers: (
     1: 2rem,
-    2: 1.4rem,
-    3: 1rem,
-    4: 0.8rem,
+    2: 1.6rem,
+    3: 1.4rem,
+    4: 1rem,
 );
 
 @each $i, $fs in $headers {
