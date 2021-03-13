@@ -164,9 +164,9 @@ router.get('/:url', async (req, res) => {
         await Post.updateOne({ url: url }, { $inc: { views: 1 } });
     }
 
-    post[0].formattedTime = moment(post[0].writtenTime).format(
-        'YYYY.MM.DD. HH:mm'
-    );
+    post[0].formattedTime = DateTime.fromJSDate(
+        post[0].writtenTime
+    ).toLocaleString(DateTime.DATETIME_SHORT);
 
     post[0].replies.forEach((e) => {
         const dt = DateTime.fromJSDate(e.writtenTime);
