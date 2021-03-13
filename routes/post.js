@@ -1,5 +1,6 @@
 const express = require('express');
 const moment = require('moment');
+const { DateTime } = require('luxon');
 const bcrypt = require('bcrypt');
 const { Post, Reply } = require('../models/post');
 const marked = require('./postProcessor');
@@ -169,10 +170,11 @@ router.get('/:url', async (req, res) => {
     );
 
     post[0].replies.forEach((e) => {
+        const dt = DateTime.fromJSDate(e.writtenTime);
         e.formattedTime =
-            moment(e.writtenTime).date() === moment().date()
-                ? moment(e.writtenTime).format('HH:mm')
-                : moment(e.writtenTime).format('MM.DD');
+            dt.day === DateTime.now().day
+                ? dt.toLocaleString(DateTime.TIME_SIMPLE)
+                : dt.toLocaleString({ month: '2-digit', day: '2-digit' });
     });
     res.status(200).render('post', {
         session: req.session,

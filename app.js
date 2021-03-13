@@ -8,7 +8,7 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
 const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
-const MongoStore = require('connect-mongo').default;
+const MongoStore = require('connect-mongo');
 
 let indexRouter = require('./routes/index');
 let apiRouter = require('./routes/api');

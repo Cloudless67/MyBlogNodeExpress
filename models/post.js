@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { DateTime } = require('luxon');
 const moment = require('moment');
 
 const replySchema = new mongoose.Schema();
@@ -9,7 +10,7 @@ replySchema.add({
     password: String,
     writtenTime: {
         type: Date,
-        default: moment().format(),
+        default: DateTime.now().toString(),
     },
     reReplies: [replySchema],
 });
