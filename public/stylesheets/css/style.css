@@ -113,8 +113,26 @@ nav .list:last-child {
   font-size: 1rem;
 }
 
+.markdown-body {
+  font-size: 18px;
+  line-height: 2rem;
+}
+.markdown-body code {
+  font-size: 16px;
+}
 .markdown-body a {
   color: #4f83cc;
+}
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  border: solid lightgray 1px;
+}
+.markdown-body td,
+.markdown-body tr,
+.markdown-body th {
+  padding: 10px;
+  border: solid lightgray 1px;
 }
 
 .task-list-item {

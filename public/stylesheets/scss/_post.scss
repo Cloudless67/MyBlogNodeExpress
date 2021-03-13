@@ -48,8 +48,28 @@ $secondary-dark: #8c0032;
 }
 
 .markdown-body {
+    font-size: 18px;
+    line-height: 2rem;
+
+    code {
+        font-size: 16px;
+    }
+
     a {
         color: $primary-light;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: solid lightgray 1px;
+    }
+
+    td,
+    tr,
+    th {
+        padding: 10px;
+        border: solid lightgray 1px;
     }
 }
 

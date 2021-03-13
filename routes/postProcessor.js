@@ -3,6 +3,15 @@ const Prism = require('prismjs');
 const katex = require('katex');
 const loadLanguages = require('prismjs/components/');
 
+function escapeHtml(unsafe) {
+    return unsafe
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
 // Languages I have plan to write in my posts
 loadLanguages([
     'bash',
@@ -61,7 +70,7 @@ const renderer = {
             });
         } else {
             // or just use original code
-            return `<code class = "inline-code">${code}</code>`;
+            return `<code class = "inline-code">${escapeHtml(code)}</code>`;
         }
     },
     listitem(text, task, checked) {
