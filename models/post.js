@@ -41,7 +41,7 @@ const postSchema = new mongoose.Schema({
     tags: [String],
     writtenTime: {
         type: Date,
-        default: moment().format(),
+        default: DateTime.now().toString(),
     },
     views: {
         type: Number,
