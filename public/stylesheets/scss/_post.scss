@@ -60,7 +60,8 @@ $secondary-dark: #8c0032;
     }
 
     table {
-        width: 100%;
+        display: block;
+        overflow-x: auto;
         border-collapse: collapse;
         border: solid lightgray 1px;
     }
@@ -149,5 +150,9 @@ $secondary-dark: #8c0032;
         padding: 0;
         font-size: 1rem;
         grid-template-columns: 42% 42% 16%;
+    }
+
+    .markdown-body {
+        line-height: 1.6rem;
     }
 }

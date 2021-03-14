@@ -124,7 +124,8 @@ nav .list:last-child {
   color: #4f83cc;
 }
 .markdown-body table {
-  width: 100%;
+  display: block;
+  overflow-x: auto;
   border-collapse: collapse;
   border: solid lightgray 1px;
 }
@@ -201,6 +202,10 @@ nav .list:last-child {
     padding: 0;
     font-size: 1rem;
     grid-template-columns: 42% 42% 16%;
+  }
+
+  .markdown-body {
+    line-height: 1.6rem;
   }
 }
 .Login-div {
@@ -460,6 +465,7 @@ article section h3::after {
     margin: 0;
     margin-bottom: 25px;
     margin-right: 0;
+    padding: 20px;
   }
 
   #category-navbar {
