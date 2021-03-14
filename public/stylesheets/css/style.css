@@ -127,7 +127,6 @@ nav .list:last-child {
   display: block;
   overflow-x: auto;
   border-collapse: collapse;
-  border: solid lightgray 1px;
 }
 .markdown-body td,
 .markdown-body tr,
