@@ -38,6 +38,12 @@ loadLanguages([
     'sql',
 ]);
 
+Prism.languages.insertBefore('bash', 'variable', {
+    variable: /\-[\-\w]+/,
+});
+
+new Prism.Token();
+
 const renderer = {
     // Override code block
     code(code, infostring) {
