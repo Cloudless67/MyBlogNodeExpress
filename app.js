@@ -26,10 +26,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 
 // Parse application/json
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Set up default mongoose connection
 mongoose.connect(process.env.DB_URL, {
