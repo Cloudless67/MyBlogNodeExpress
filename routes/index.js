@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const { Post } = require('../models/post');
-const Category = require('../models/category');
+const { Post } = require('../schemas/post');
+const Category = require('../schemas/category');
 const maxPostsToShow = 10;
 
 router.get('/login', (req, res) => {
@@ -97,7 +97,7 @@ router.get('/tag/:tag', async (req, res) => {
 
 router.get('/', async (req, res) => {
     const idx = req.query.idx || 0;
-    const result = await Post.find({});
+    const result = await req.db.Post.find({});
 
     res.render('post-list', {
         session: req.session,

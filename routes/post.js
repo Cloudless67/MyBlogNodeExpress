@@ -1,8 +1,7 @@
 const express = require('express');
 const { DateTime } = require('luxon');
 const bcrypt = require('bcrypt');
-const { Post, Reply } = require('../models/post');
-const marked = require('./postProcessor');
+const marked = require('../src/postProcessor');
 const router = express.Router();
 
 router.get('/write', (req, res) => {
@@ -17,7 +16,7 @@ router.get('/write', (req, res) => {
 
 router.post('/write', async (req, res) => {
     if (checkAuth(req, res)) {
-        const post = new Post({
+        const post = new req.db.Post({
             ...req.body,
             formattedBody: marked(req.body.body),
             tags: req.body.tags ? req.body.tags.split(',') : [],
@@ -85,7 +84,7 @@ router.post('/delete', async (req, res) => {
 router.post('/reply', async (req, res) => {
     const hash = await bcrypt.hash(req.body.pwd, 10);
     try {
-        const reply = new Reply({
+        const reply = new req.db.Reply({
             nickname: req.body.nickname || '익명',
             body: req.body.body,
             password: hash,
@@ -153,7 +152,7 @@ function checkAuth(req, res) {
 router.get('/:url', async (req, res) => {
     const url = req.params.url;
 
-    const post = await Post.find({ url: url });
+    const post = await req.db.Post.find({ url: url });
     if (post.length === 0) {
         res.status(404).render('error', {
             message: `The post "${url}" does not exist.`,
@@ -161,7 +160,7 @@ router.get('/:url', async (req, res) => {
         return;
     }
     if (!req.session.nickname) {
-        await Post.updateOne({ url: url }, { $inc: { views: 1 } });
+        await req.db.Post.updateOne({ url: url }, { $inc: { views: 1 } });
     }
 
     post[0].formattedTime = DateTime.fromJSDate(

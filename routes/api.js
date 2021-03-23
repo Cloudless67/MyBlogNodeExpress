@@ -53,7 +53,7 @@ router.delete('/image/:name(*)', (req, res) => {
 });
 
 router.post('/category/:name', async (req, res) => {
-    const Category = require('../models/category');
+    const Category = require('../schemas/category');
     const name = req.params.name;
     const url = encodeURI(req.params.name);
     if (CheckAuth(req, res)) {

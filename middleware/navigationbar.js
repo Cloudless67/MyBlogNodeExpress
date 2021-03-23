@@ -1,10 +1,8 @@
-const Category = require('../models/category');
+const Category = require('../schemas/category');
 
 module.exports = async function (req, res, next) {
-    Category.find()
-        .then((categories) => {
-            req.categories = categories;
-            next();
-        })
-        .catch((err) => console.error(err));
+    const categories = await req.db.Category.find();
+
+    req.categories = categories;
+    next();
 };

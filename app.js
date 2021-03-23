@@ -1,20 +1,16 @@
+require('dotenv').config({ path: './config.env' });
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
 const logger = require('morgan');
-const session = require('express-session');
-const dotenv = require('dotenv');
-dotenv.config({ path: './config.env' });
-const mongoose = require('mongoose');
-mongoose.set('useCreateIndex', true);
-const MongoStore = require('connect-mongo');
+const Database = require('./src/database');
 
-let indexRouter = require('./routes/index');
-let apiRouter = require('./routes/api');
-let postRouter = require('./routes/post');
+const indexRouter = require('./routes/index');
+const apiRouter = require('./routes/api');
+const postRouter = require('./routes/post');
 
 const app = express();
+const db = new Database();
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,37 +27,11 @@ app.use(express.urlencoded({ extended: false }));
 // Parse application/json
 app.use(express.json());
 
-// Set up default mongoose connection
-mongoose.connect(process.env.DB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+// Get corresponding database
+app.use(require('./middleware/dbSelector')(db));
 
-// Get the default connection
-const db = mongoose.connection;
-
-// Check database connection
-db.once('open', () => {
-    console.log('Successfully connected to mongodb!');
-});
-
-// Bind connection to error event (to get notification of connection errors)
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
-app.use(
-    session({
-        key: 'LoginSession',
-        secret: 'Secret',
-        store: MongoStore.create({
-            mongoUrl: process.env.DB_URL,
-        }),
-        resave: false,
-        saveUninitialized: true,
-        cookie: {
-            maxAge: 24 * 60 * 60 * 1000,
-        },
-    })
-);
+// Connect to Session
+app.use(require('./middleware/session'));
 
 // Get categories
 app.use(require('./middleware/navigationbar'));
