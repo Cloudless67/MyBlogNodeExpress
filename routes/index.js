@@ -46,8 +46,8 @@ router.get('/category/:name', async (req, res) => {
     const idx = req.query.idx || 0;
     const name = decodeURI(req.params.name);
     try {
-        const categories = await Category.find({ name });
-        const result = await Post.find({ category: categories[0].name });
+        const categories = await req.db.Category.find({ name });
+        const result = await req.db.Post.find({ category: categories[0].name });
 
         res.render('post-list', {
             session: req.session,
@@ -72,7 +72,7 @@ router.get('/tag/:tag', async (req, res) => {
     const tag = decodeURI(req.params.tag);
     let result = [];
     try {
-        result = await Post.find({ tags: tag });
+        result = await req.db.Post.find({ tags: tag });
     } catch (error) {
         res.status(404).render('error', { message: error.message });
     }
