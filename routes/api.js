@@ -53,11 +53,10 @@ router.delete('/image/:name(*)', (req, res) => {
 });
 
 router.post('/category/:name', async (req, res) => {
-    const Category = require('../schemas/category');
     const name = req.params.name;
     const url = encodeURI(req.params.name);
     if (CheckAuth(req, res)) {
-        const category = new Category({ name });
+        const category = new req.db.Category({ name });
         try {
             await category.save();
             res.status(200).json({ name, url });
