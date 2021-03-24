@@ -35,7 +35,7 @@ router.post('/write', async (req, res) => {
 router.get('/update/:id', async (req, res) => {
     if (checkAuth(req, res)) {
         try {
-            const post = await Post.find({ _id: req.params.id });
+            const post = await req.db.Post.find({ _id: req.params.id });
 
             res.render('update', {
                 session: req.session,
@@ -52,7 +52,7 @@ router.get('/update/:id', async (req, res) => {
 router.post('/update', async (req, res) => {
     if (checkAuth(req, res)) {
         try {
-            await Post.updateOne(
+            await req.db.Post.updateOne(
                 { _id: req.body.id },
                 {
                     ...req.body,
@@ -73,7 +73,7 @@ router.post('/update', async (req, res) => {
 router.post('/delete', async (req, res) => {
     if (checkAuth(req, res)) {
         try {
-            await Post.deleteOne({ _id: req.body.id });
+            await req.db.Post.deleteOne({ _id: req.body.id });
             res.status(200).redirect('/');
         } catch (error) {
             res.status(400).render('error', { message: error.message });
@@ -90,7 +90,7 @@ router.post('/reply', async (req, res) => {
             password: hash,
         });
 
-        await Post.updateOne(
+        await req.db.Post.updateOne(
             { url: req.body.url },
             { $push: { replies: reply }, $inc: { repliesNum: 1 } }
         );
@@ -106,7 +106,7 @@ router.post('/delete-reply', async (req, res) => {
     const _id = req.body.id;
     if (req.session.nickname) {
         try {
-            await Post.updateOne(
+            await req.db.Post.updateOne(
                 { url },
                 { $pull: { replies: { _id } }, $inc: { repliesNum: -1 } }
             );
@@ -115,13 +115,13 @@ router.post('/delete-reply', async (req, res) => {
             res.status(400).render('error', { message: error.message });
         }
     } else {
-        const post = await Post.find({ url });
+        const post = await req.db.Post.find({ url });
         const reply = post[0].replies.filter((x) => x._id == _id);
         const result = await bcrypt.compare(req.body.pwd, reply[0].password);
 
         if (result) {
             try {
-                await Post.updateOne(
+                await req.db.Post.updateOne(
                     { url },
                     {
                         $pull: { replies: { _id } },
