@@ -1,2 +1,11 @@
 User-agent: *
-Disallow: /login/
+Disallow: /login
+Disallow: /tags
+
+User-agent: *
+Disallow: /naver9031e9869cf962e4ae8a22893d5f9c9f.html
+
+User-agent: Yeti
+Allow: /naver9031e9869cf962e4ae8a22893d5f9c9f.html
+
+Sitemap: https://www.cloudless.blog/etc/sitemap.xml
