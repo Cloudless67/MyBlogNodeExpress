@@ -3,7 +3,7 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
-const Database = require('./src/database');
+const Database = require('./models/database');
 
 const indexRouter = require('./routes/index');
 const apiRouter = require('./routes/api');

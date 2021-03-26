@@ -1,184 +1,22 @@
 const express = require('express');
-const { DateTime } = require('luxon');
-const bcrypt = require('bcrypt');
-const marked = require('../src/postProcessor');
+const postController = require('../controllers/postController');
+const replyController = require('../controllers/replyController');
 const router = express.Router();
 
-router.get('/write', (req, res) => {
-    if (checkAuth(req, res)) {
-        res.render('write', {
-            session: req.session,
-            title: 'Write',
-            categories: req.categories,
-        });
-    }
-});
+router.get('/write', postController.getWrite);
 
-router.post('/write', async (req, res) => {
-    if (checkAuth(req, res)) {
-        const post = new req.db.Post({
-            ...req.body,
-            formattedBody: marked(req.body.body),
-            tags: req.body.tags ? req.body.tags.split(',') : [],
-        });
-        try {
-            await post.save();
-            res.status(200).redirect(
-                `/post/${req.body.url || result.insertId}`
-            );
-        } catch (error) {
-            res.status(400).render('error', { message: error.message });
-        }
-    }
-});
+router.post('/write', postController.postWrite);
 
-router.get('/update/:id', async (req, res) => {
-    if (checkAuth(req, res)) {
-        try {
-            const post = await req.db.Post.find({ _id: req.params.id });
+router.get('/update/:id', postController.getUpdate);
 
-            res.render('update', {
-                session: req.session,
-                post: post[0],
-                id: req.params.id,
-                categories: req.categories,
-            });
-        } catch (error) {
-            res.status(400).render('error', { message: error.message });
-        }
-    }
-});
+router.post('/update', postController.postUpdate);
 
-router.post('/update', async (req, res) => {
-    if (checkAuth(req, res)) {
-        try {
-            await req.db.Post.updateOne(
-                { _id: req.body.id },
-                {
-                    ...req.body,
-                    formattedBody: marked(req.body.body),
-                    tags: req.body.tags ? req.body.tags.split(',') : [],
-                }
-            );
+router.post('/delete', postController.delete);
 
-            res.status(200).redirect(
-                `/post/${req.body.url || result.insertId}`
-            );
-        } catch (error) {
-            res.status(400).render('error', { message: error.message });
-        }
-    }
-});
+router.post('/reply', replyController.postReply);
 
-router.post('/delete', async (req, res) => {
-    if (checkAuth(req, res)) {
-        try {
-            await req.db.Post.deleteOne({ _id: req.body.id });
-            res.status(200).redirect('/');
-        } catch (error) {
-            res.status(400).render('error', { message: error.message });
-        }
-    }
-});
+router.post('/delete-reply', replyController.deleteReply);
 
-router.post('/reply', async (req, res) => {
-    const hash = await bcrypt.hash(req.body.pwd, 10);
-    try {
-        const reply = new req.db.Reply({
-            nickname: req.body.nickname || '익명',
-            body: req.body.body,
-            password: hash,
-        });
-
-        await req.db.Post.updateOne(
-            { url: req.body.url },
-            { $push: { replies: reply }, $inc: { repliesNum: 1 } }
-        );
-
-        res.status(200).redirect(`/post/${req.body.url}`);
-    } catch (error) {
-        res.status(400).render('error', { message: error.message });
-    }
-});
-
-router.post('/delete-reply', async (req, res) => {
-    const url = req.body.url;
-    const _id = req.body.id;
-    if (req.session.nickname) {
-        try {
-            await req.db.Post.updateOne(
-                { url },
-                { $pull: { replies: { _id } }, $inc: { repliesNum: -1 } }
-            );
-            res.status(200).redirect(`/post/${url}`);
-        } catch (error) {
-            res.status(400).render('error', { message: error.message });
-        }
-    } else {
-        const post = await req.db.Post.find({ url });
-        const reply = post[0].replies.filter((x) => x._id == _id);
-        const result = await bcrypt.compare(req.body.pwd, reply[0].password);
-
-        if (result) {
-            try {
-                await req.db.Post.updateOne(
-                    { url },
-                    {
-                        $pull: { replies: { _id } },
-                        $inc: { repliesNum: -1 },
-                    }
-                );
-                res.status(200).redirect(`/post/${url}`);
-            } catch (error) {
-                res.status(400).render('error', { message: error.message });
-            }
-        } else {
-            res.redirect(`/post/${req.body.url}`);
-        }
-    }
-});
-
-function checkAuth(req, res) {
-    if (req.session.nickname) {
-        return true;
-    } else {
-        res.render('error', {
-            message: '비정상적인 접근입니다.',
-        });
-        return false;
-    }
-}
-
-router.get('/:url', async (req, res) => {
-    const url = req.params.url;
-
-    const post = await req.db.Post.find({ url: url });
-    if (post.length === 0) {
-        res.status(404).render('error', {
-            message: `The post "${url}" does not exist.`,
-        });
-        return;
-    }
-    if (!req.session.nickname) {
-        await req.db.Post.updateOne({ url: url }, { $inc: { views: 1 } });
-    }
-
-    post[0].formattedTime = DateTime.fromJSDate(
-        post[0].writtenTime
-    ).toLocaleString(DateTime.DATETIME_SHORT);
-
-    post[0].replies.forEach((e) => {
-        const dt = DateTime.fromJSDate(e.writtenTime);
-        e.formattedTime =
-            dt.day === DateTime.now().day
-                ? dt.toLocaleString(DateTime.TIME_SIMPLE)
-                : dt.toLocaleString({ month: '2-digit', day: '2-digit' });
-    });
-    res.status(200).render('post', {
-        session: req.session,
-        post: post[0],
-        categories: req.categories,
-    });
-});
+router.get('/:url', postController.getPost);
 
 module.exports = router;

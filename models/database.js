@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const categorySchema = require('../schemas/category');
-const postSchema = require('../schemas/post');
-const replySchema = require('../schemas/reply');
+const categorySchema = require('./category');
+const postSchema = require('./post');
+const replySchema = require('./reply');
 
 mongoose.set('useCreateIndex', true);
 
